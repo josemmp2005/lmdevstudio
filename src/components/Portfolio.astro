@@ -1,0 +1,402 @@
+---
+const projects = [
+    {
+        title: "Aura Jewelry",
+        category: "E-COMMERCE PREMIUM",
+        description:
+            "Plataforma de lujo con enfoque en experiencia táctil digital.",
+        imageClass: "bg-dark",
+    },
+    {
+        title: "Nova Studio",
+        category: "BRANDING & WEB",
+        description: "Identidad minimalista para estudio de arquitectura.",
+        imageClass: "bg-cream",
+    },
+    {
+        title: "Flow Task",
+        category: "WEB APP",
+        description: "Gestor de tareas con interfaz líquida y minimalista.",
+        imageClass: "bg-gray",
+    },
+    {
+        title: "Zénit Legal",
+        category: "CORPORATE",
+        description:
+            "Redefiniendo el sector legal a través del diseño moderno.",
+        imageClass: "bg-gradient",
+    },
+    {
+        title: "Echo Audio",
+        category: "PRODUCT LANDING",
+        description:
+            "Presentación inmersiva para auriculares de alta fidelidad.",
+        imageClass: "bg-dark",
+    },
+    {
+        title: "Lumina Art",
+        category: "GALLERY",
+        description: "Espacio digital para exhibición de arte contemporáneo.",
+        imageClass: "bg-cream",
+    },
+];
+
+// Split projects into 3 columns
+const col1 = [...projects, ...projects]; // Duplicated for seamless loop
+const col2 = [...projects.reverse(), ...projects.reverse()]; // Reverse for variety
+const col3 = [...projects, ...projects]; // Original order again for 3rd col
+---
+
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="portfolio-header">
+            <div class="header-left">
+                <h2>Proyectos <span>Seleccionados</span></h2>
+                <div class="line"></div>
+            </div>
+            <p class="header-desc">
+                Una muestra de nuestro compromiso con el diseño de vanguardia y
+                la excelencia técnica.
+            </p>
+        </div>
+
+        <div class="scroll-container-wrapper">
+            <div class="scroll-gradient top"></div>
+            <div class="scroll-container">
+                <!-- Column 1: Up -->
+                <div class="scroll-column scroll-up">
+                    {
+                        col1.map((project, index) => (
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div
+                                        class={`image-placeholder ${project.imageClass}`}
+                                    />
+                                    <div class="project-overlay">
+                                        <div class="project-info">
+                                            <span class="category">
+                                                {project.category}
+                                            </span>
+                                            <h3>{project.title}</h3>
+                                            <p>{project.description}</p>
+                                        </div>
+                                        <a href="#" class="view-project">
+                                            VER PROYECTO
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <!-- Column 2: Down -->
+                <div class="scroll-column scroll-down">
+                    {
+                        col2.map((project, index) => (
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div
+                                        class={`image-placeholder ${project.imageClass}`}
+                                    />
+                                    <div class="project-overlay">
+                                        <div class="project-info">
+                                            <span class="category">
+                                                {project.category}
+                                            </span>
+                                            <h3>{project.title}</h3>
+                                            <p>{project.description}</p>
+                                        </div>
+                                        <a href="#" class="view-project">
+                                            VER PROYECTO
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <!-- Column 3: Up -->
+                <div class="scroll-column scroll-up">
+                    {
+                        col3.map((project, index) => (
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div
+                                        class={`image-placeholder ${project.imageClass}`}
+                                    />
+                                    <div class="project-overlay">
+                                        <div class="project-info">
+                                            <span class="category">
+                                                {project.category}
+                                            </span>
+                                            <h3>{project.title}</h3>
+                                            <p>{project.description}</p>
+                                        </div>
+                                        <a href="#" class="view-project">
+                                            VER PROYECTO
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+            <div class="scroll-gradient bottom"></div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .portfolio {
+        padding: 10rem 0;
+        background-color: var(--color-cream);
+        overflow: hidden; /* Ensure no scrollbar from this section */
+    }
+
+    .container {
+        max-width: 1440px; /* Wider container for 3 columns */
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .portfolio-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 5rem;
+    }
+
+    .header-left h2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        color: var(--color-black);
+        margin-bottom: 1rem;
+    }
+
+    .header-left h2 span {
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .line {
+        width: 100px;
+        height: 1px;
+        background: var(--color-black);
+    }
+
+    .header-desc {
+        max-width: 400px;
+        color: var(--color-muted);
+        line-height: 1.6;
+        font-weight: 300;
+        text-align: right;
+    }
+
+    /* Scroll Container */
+    .scroll-container-wrapper {
+        position: relative;
+        height: 800px; /* Fixed height for the viewing window */
+        overflow: hidden;
+    }
+
+    .scroll-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        height: 100%;
+        transform: rotate(0deg); /* Trigger hardware acceleration */
+    }
+
+    .scroll-column {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding-bottom: 2rem; /* Ensure seamless loop */
+        /* Animation will be applied here */
+    }
+
+    .scroll-up {
+        animation: scrollUp 40s linear infinite;
+    }
+
+    .scroll-down {
+        animation: scrollDown 40s linear infinite;
+    }
+
+    @keyframes scrollUp {
+        0% {
+            transform: translateY(0);
+        }
+        100% {
+            transform: translateY(-50%);
+        }
+    }
+
+    @keyframes scrollDown {
+        0% {
+            transform: translateY(-50%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    /* Gradients */
+    .scroll-gradient {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 150px;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .scroll-gradient.top {
+        top: 0;
+        background: linear-gradient(
+            to bottom,
+            var(--color-cream) 0%,
+            transparent 100%
+        );
+    }
+
+    .scroll-gradient.bottom {
+        bottom: 0;
+        background: linear-gradient(
+            to top,
+            var(--color-cream) 0%,
+            transparent 100%
+        );
+    }
+
+    /* Cards */
+    .project-card {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        flex-shrink: 0; /* Prevent shrinking in flex container */
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .image-placeholder {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bg-dark {
+        background-color: #1a1a1a;
+    }
+    .bg-cream {
+        background-color: #e5e2db;
+    }
+    .bg-gray {
+        background-color: #d1d1d1;
+    }
+    .bg-gradient {
+        background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+    }
+
+    .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .project-card:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-card:hover .image-placeholder {
+        transform: scale(1.05);
+    }
+
+    .category {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.15em;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .project-info h3 {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    .project-info p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+
+    .view-project {
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding-bottom: 0.3rem;
+        width: max-content;
+        transition: border-color 0.3s ease;
+    }
+
+    .view-project:hover {
+        border-color: #fff;
+    }
+
+    @media (max-width: 1024px) {
+        .scroll-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .scroll-column:nth-child(3) {
+            display: none; /* Hide 3rd column on tablet */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .portfolio {
+            padding: 6rem 0;
+        }
+        .portfolio-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .header-desc {
+            text-align: left;
+        }
+        .scroll-container {
+            grid-template-columns: 1fr;
+        }
+        .scroll-column:nth-child(2) {
+            display: none; /* Hide 2nd column on mobile, keep only 1 */
+        }
+        .scroll-container-wrapper {
+            height: 600px;
+        }
+    }
+</style>

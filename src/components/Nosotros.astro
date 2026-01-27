@@ -1,0 +1,245 @@
+---
+
+---
+
+<section id="nosotros" class="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content">
+                <div class="tag-wrapper">
+                    <span class="tag">NUESTRA FILOSOFÍA</span>
+                </div>
+                <h2>
+                    Obsesionados con la <span>Excelencia</span> y el Detalle
+                </h2>
+                <div class="line"></div>
+                <p class="description">
+                    En lmdevstudio no solo construimos sitios web; forjamos
+                    identidades digitales. Creemos en la simplicidad como la
+                    máxima sofisticación y en que cada línea de código debe
+                    tener un propósito claro: elevar tu marca.
+                </p>
+                <div class="values">
+                    <div class="value-item">
+                        <span class="value-num">01</span>
+                        <div class="value-text">
+                            <h3>Minimalismo Funcional</h3>
+                            <p>
+                                Eliminamos lo innecesario para que lo esencial
+                                brille con fuerza propia.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-num">02</span>
+                        <div class="value-text">
+                            <h3>Rendimiento Extremo</h3>
+                            <p>
+                                La velocidad no es negociable. Creamos
+                                experiencias que cargan en un parpadeo.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="value-item">
+                        <span class="value-num">03</span>
+                        <div class="value-text">
+                            <h3>Enfoque en Resultados</h3>
+                            <p>
+                                Diseño que no solo es estético, sino que está
+                                pensado para convertir y crecer.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="visual-container">
+                    <div class="main-image">
+                        <!-- Aquí iría una imagen real, usamos un placeholder elegante -->
+                        <div class="placeholder-img">
+                            <div class="abstract-shape"></div>
+                        </div>
+                    </div>
+                    <div class="stats-card">
+                        <span class="stat-number">+100%</span>
+                        <span class="stat-label">Compromiso</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .about {
+        padding: 10rem 0;
+        background-color: var(--color-cream);
+    }
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 8rem;
+        align-items: center;
+    }
+
+    .tag-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid rgba(26, 26, 26, 0.2);
+        border-radius: 100px;
+        color: var(--color-muted);
+    }
+
+    h2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 2rem;
+        color: var(--color-black);
+    }
+
+    h2 span {
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .line {
+        width: 80px;
+        height: 1px;
+        background: var(--color-black);
+        margin-bottom: 2.5rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--color-muted);
+        margin-bottom: 4rem;
+        max-width: 600px;
+    }
+
+    .values {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .value-item {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .value-num {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--color-black);
+        opacity: 0.3;
+        margin-top: 0.3rem;
+    }
+
+    .value-text h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--color-black);
+    }
+
+    .value-text p {
+        color: var(--color-muted);
+        line-height: 1.6;
+    }
+
+    /* Visual Section */
+    .about-visual {
+        position: relative;
+    }
+
+    .visual-container {
+        position: relative;
+        padding: 2rem;
+    }
+
+    .placeholder-img {
+        aspect-ratio: 4/5;
+        background: #e5e2db;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .abstract-shape {
+        position: absolute;
+        top: 20%;
+        left: -10%;
+        width: 120%;
+        height: 80%;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.05) 0%,
+            transparent 100%
+        );
+        transform: rotate(-10deg);
+    }
+
+    .stats-card {
+        position: absolute;
+        bottom: 0;
+        left: -20%;
+        background: var(--color-black);
+        color: var(--color-cream);
+        padding: 2.5rem;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 1024px) {
+        .about-grid {
+            grid-template-columns: 1fr;
+            gap: 5rem;
+        }
+        .stats-card {
+            left: 0;
+            bottom: -2rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .about {
+            padding: 6rem 0;
+        }
+        .stats-card {
+            padding: 1.5rem;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+        }
+    }
+</style>

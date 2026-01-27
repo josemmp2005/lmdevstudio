@@ -1,0 +1,59 @@
+---
+interface Props {
+    className?: string;
+    width?: string;
+    variant?: "default" | "peek" | "floating";
+}
+
+const { className = "", width = "100px", variant = "default" } = Astro.props;
+---
+
+<div class={`mascota-wrapper ${variant} ${className}`}>
+    <img
+        src="/mascota.png"
+        alt="Mascota lmdevstudio"
+        class="mascota-img"
+        style={`width: ${width};`}
+    />
+</div>
+
+<style>
+    .mascota-wrapper {
+        display: inline-flex;
+        pointer-events: none; /* Por defecto no interfiere, cambiar si se quiere interacción */
+        z-index: 10;
+        transition: transform 0.4s ease;
+    }
+
+    .mascota-img {
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    }
+
+    /* Variantes */
+    .floating {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .peek {
+        transform: translateY(20%);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .peek:hover {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+</style>

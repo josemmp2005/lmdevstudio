@@ -1,0 +1,301 @@
+---
+import Mascota from "./Mascota.astro";
+---
+
+<section id="contacto" class="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="tag-wrapper">
+                    <span class="tag">CONTACTO</span>
+                </div>
+                <h2>¿Tienes un <span>Proyecto</span> en Mente?</h2>
+                <div class="line"></div>
+                <div class="mascot-container">
+                    <Mascota width="120px" variant="peek" />
+                </div>
+                <p class="description">
+                    Estamos listos para escucharte y convertir tus ideas en
+                    realidades digitales excepcionales.
+                </p>
+
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <span class="label">Email</span>
+                        <a href="mailto:hola@lmdevstudio.com" class="value"
+                            >hola@lmdevstudio.com</a
+                        >
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Ubicación</span>
+                        <span class="value"
+                            >Madrid, España — Remoto en todo el mundo</span
+                        >
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Social</span>
+                        <div class="social-links">
+                            <a href="#">Instagram</a>
+                            <a href="#">LinkedIn</a>
+                            <a href="#">Behance</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Tu nombre"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="tu@email.com"
+                            required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="5"
+                            placeholder="Cuéntanos sobre tu proyecto..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        ENVIAR MENSAJE
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="arrow"
+                            ><line x1="5" y1="12" x2="19" y2="12"
+                            ></line><polyline points="12 5 19 12 12 19"
+                            ></polyline></svg
+                        >
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact {
+        padding: 10rem 0;
+        background-color: var(--color-cream);
+    }
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 8rem;
+    }
+
+    .tag-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid rgba(26, 26, 26, 0.2);
+        border-radius: 100px;
+        color: var(--color-muted);
+    }
+
+    h2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 2rem;
+        color: var(--color-black);
+    }
+
+    h2 span {
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .line {
+        width: 80px;
+        height: 1px;
+        background: var(--color-black);
+        margin-bottom: 2.5rem;
+    }
+
+    .mascot-container {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--color-muted);
+        margin-bottom: 4rem;
+    }
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+
+    .detail-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .detail-item .label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--color-muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .detail-item .value {
+        font-size: 1.1rem;
+        color: var(--color-black);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .detail-item a.value:hover {
+        color: var(--color-muted);
+    }
+
+    .social-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        font-size: 1rem;
+        color: var(--color-black);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        border-color: var(--color-black);
+    }
+
+    /* Form Styles */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-black);
+    }
+
+    .form-group input,
+    .form-group textarea {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+        padding: 1rem 0;
+        font-family: inherit;
+        font-size: 1.1rem;
+        color: var(--color-black);
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--color-black);
+    }
+
+    .btn-submit {
+        margin-top: 2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        background: var(--color-black);
+        color: var(--color-cream);
+        padding: 1.5rem 3rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        cursor: pointer;
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .btn-submit .arrow {
+        width: 1.2rem;
+        height: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-submit:hover .arrow {
+        transform: translateX(5px);
+    }
+
+    @media (max-width: 1024px) {
+        .contact-grid {
+            gap: 5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            padding: 6rem 0;
+        }
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+        .description {
+            margin-bottom: 3rem;
+        }
+    }
+</style>

@@ -1,0 +1,173 @@
+---
+
+---
+
+<header class="header" id="main-header">
+    <div class="container">
+        <div class="logo-wrapper">
+            <a href="/" class="logo">
+                <img src="/logo.png" alt="" class="logo-img" />
+            </a>
+        </div>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#portafolio">Portafolio</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+            </ul>
+        </nav>
+
+        <div class="cta-wrapper">
+            <a href="#presupuestos" class="btn-presupuestos">Presupuestos</a>
+        </div>
+    </div>
+</header>
+
+<script>
+    const header = document.getElementById("main-header");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            header?.classList.add("scrolled");
+        } else {
+            header?.classList.remove("scrolled");
+        }
+    });
+</script>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: transparent;
+        z-index: 9999;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        justify-content: center;
+        padding: 1.5rem 0;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    :global(.intro-finished) .header {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    /* Estilos cuando se hace scroll - Efecto Píldora */
+    .header.scrolled {
+        top: 1.5rem;
+        width: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(26, 26, 26, 0.8);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 0 3rem;
+        width: 100%;
+        max-width: var(--max-width);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        transition: all 0.4s ease;
+    }
+
+    .header.scrolled .container {
+        padding: 0.5rem 1.5rem;
+        gap: 3rem;
+        width: max-content;
+    }
+
+    .logo-img {
+        width: 130px;
+        transition: all 0.4s ease;
+    }
+
+    .header.scrolled .logo-img {
+        width: 100px; /* Un poco más pequeño en modo píldora */
+    }
+
+    .nav ul {
+        display: flex;
+        gap: 3.5rem;
+        transition: all 0.4s ease;
+    }
+
+    .header.scrolled .nav ul {
+        gap: 2rem;
+    }
+
+    .nav a {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--color-black);
+        opacity: 0.8;
+        transition: all 0.3s ease;
+    }
+
+    .header.scrolled .nav a {
+        color: var(--color-cream);
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    .nav a:hover {
+        opacity: 1;
+    }
+
+    .btn-presupuestos {
+        font-size: 1.05rem;
+        font-weight: 400;
+        opacity: 0.8;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    .header.scrolled .btn-presupuestos {
+        color: var(--color-cream);
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        border-bottom: none;
+    }
+
+    .btn-presupuestos:hover {
+        opacity: 1;
+        border-bottom-color: var(--color-black);
+    }
+
+    .header.scrolled .btn-presupuestos:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            padding: 0 2rem;
+        }
+        .nav {
+            display: none;
+        }
+        .header.scrolled {
+            width: 90%;
+            padding: 0.8rem 1rem;
+        }
+        .header.scrolled .container {
+            width: 100%;
+            padding: 0;
+        }
+    }
+</style>

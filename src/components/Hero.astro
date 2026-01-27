@@ -1,0 +1,303 @@
+---
+
+---
+
+<section class="hero">
+    <video
+        id="hero-video-desktop"
+        src="https://rgensrjjwwbhgqxgpaar.supabase.co/storage/v1/object/public/Assets/56cec4a4-9ca7-470a-9476-56f9556afdd3.mp4"
+        autoplay
+        muted
+        playsinline
+        class="video desktop-video"></video>
+
+    <video
+        id="hero-video-mobile"
+        src="https://rgensrjjwwbhgqxgpaar.supabase.co/storage/v1/object/public/Assets/2e8f0572-af5f-4bba-bf2f-a3f0cc355579%20(1).mp4"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+        class="video mobile-video"></video>
+
+    <img src="/fondo.jpeg" alt="" class="hero-bg-image desktop-bg" />
+    <img src="/fondo-movil.png" alt="" class="hero-bg-image mobile-bg" />
+
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="tag-wrapper">
+                <span class="tag">PREMIUM WEB DEVELOPMENTS</span>
+            </div>
+
+            <h1>
+                Creamos <span>Experiencias</span> Digitales de <strong
+                    >Alto Nivel</strong
+                >
+            </h1>
+
+            <p class="description">
+                Diseño y desarrollo web con enfoque en rendimiento, SEO y
+                conversión para marcas que se toman en serio su presencia
+                digital.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#contacto" class="btn-primary">Hablemos</a>
+                <a href="#proyectos" class="btn-secondary">Nuestros Proyectos</a
+                >
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const videos = document.querySelectorAll(
+        ".video",
+    ) as NodeListOf<HTMLVideoElement>;
+
+    const completeIntro = () => {
+        document.documentElement.classList.add("intro-finished");
+    };
+
+    videos.forEach((video) => {
+        video.addEventListener("ended", completeIntro);
+
+        // Intentamos forzar la reproducción (necesario en algunos móviles)
+        video.load(); // Recargamos para asegurar que el source sea fresco
+        video.play().catch((err) => {
+            console.log("Autoplay bloqueado:", err);
+            // Si el video falla o está bloqueado, revelamos el contenido tras 2 segundos
+            setTimeout(completeIntro, 2000);
+        });
+    });
+
+    // Fallback de seguridad
+    setTimeout(completeIntro, 10000);
+</script>
+
+<style>
+    .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .desktop-video {
+        display: block;
+        object-position: right center;
+    }
+
+    .mobile-video {
+        display: none;
+        object-position: center center;
+    }
+
+    @media (max-width: 768px) {
+        .desktop-video {
+            display: none !important;
+        }
+        .mobile-video {
+            display: block !important;
+            object-fit: cover;
+        }
+    }
+
+    :global(.intro-finished) .video {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .hero-bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .desktop-bg {
+        display: block;
+        object-position: right center;
+    }
+
+    .mobile-bg {
+        display: none;
+        object-position: center center;
+    }
+
+    @media (max-width: 768px) {
+        .desktop-bg {
+            display: none !important;
+        }
+        .mobile-bg {
+            display: block !important;
+        }
+    }
+
+    :global(.intro-finished) .hero-bg-image {
+        opacity: 1;
+    }
+
+    .hero {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        background-color: var(--color-cream);
+        padding-top: 100px;
+        width: 100%;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .hero-container {
+        width: 100%;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .hero-content {
+        max-width: 600px;
+        text-align: left !important;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s ease-out;
+    }
+
+    :global(.intro-finished) .hero-content {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .tag-wrapper {
+        margin-bottom: 3rem;
+    }
+
+    :global(.intro-finished) .tag-wrapper {
+        animation: reveal 0.8s ease-out both;
+        animation-delay: 0.2s;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid rgba(26, 26, 26, 0.2);
+        border-radius: 100px;
+        color: var(--color-muted);
+    }
+
+    h1 {
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        line-height: 1.05;
+        margin-bottom: 2.5rem;
+        color: var(--color-black);
+        font-weight: 300;
+        letter-spacing: -0.04em;
+    }
+
+    :global(.intro-finished) h1 {
+        animation: reveal 0.8s ease-out both;
+        animation-delay: 0.4s;
+    }
+
+    h1 span {
+        font-weight: 500;
+    }
+
+    h1 strong {
+        font-weight: 500;
+    }
+
+    .description {
+        font-size: 1.3rem;
+        line-height: 1.6;
+        color: var(--color-muted);
+        margin-bottom: 4rem;
+        max-width: 650px;
+    }
+
+    :global(.intro-finished) .description {
+        animation: reveal 0.8s ease-out both;
+        animation-delay: 0.6s;
+    }
+
+    .hero-actions {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    :global(.intro-finished) .hero-actions {
+        animation: reveal 0.8s ease-out both;
+        animation-delay: 0.8s;
+    }
+
+    @keyframes reveal {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .btn-primary {
+        background-color: var(--color-black);
+        color: var(--color-cream);
+        padding: 1.25rem 3.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        border: 1px solid rgba(26, 26, 26, 0.1);
+        background-color: rgba(0, 0, 0, 0.02);
+        padding: 1.25rem 3.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            padding-top: 120px;
+        }
+        h1 {
+            font-size: 2.8rem;
+        }
+        .hero-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .btn-primary,
+        .btn-secondary {
+            text-align: center;
+            width: 100%;
+        }
+    }
+</style>

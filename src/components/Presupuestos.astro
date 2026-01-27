@@ -1,0 +1,348 @@
+---
+
+---
+
+<section id="presupuestos" class="budgets">
+    <div class="container">
+        <div class="budgets-header">
+            <div class="header-content">
+                <div class="tag-wrapper">
+                    <span class="tag">PRESUPUESTOS</span>
+                </div>
+                <h2>Invierte en tu <span>Futuro</span> Digital</h2>
+                <div class="line"></div>
+                <p class="description">
+                    Selecciona el servicio que mejor se adapte a tus necesidades
+                    actuales. Cada proyecto es único y se presupuesta a medida
+                    tras una consultoría inicial.
+                </p>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Opción 1: Landing Page -->
+            <div class="pricing-card group">
+                <div class="card-header">
+                    <h3>Landing Page</h3>
+                    <p class="subtitle">Enfoque en conversión</p>
+                </div>
+                <div class="price">
+                    <span class="currency">Desde</span>
+                    <span class="amount">950€</span>
+                </div>
+                <ul class="features">
+                    <li>Diseño UX único (no plantillas)</li>
+                    <li>Copywriting persuasivo</li>
+                    <li>Optimización de carga (&lt; 1s)</li>
+                    <li>Integración con Analytics</li>
+                    <li>SEO On-page básico</li>
+                </ul>
+                <a href="#contacto" class="btn-select">SOLICITAR PROPUESTA</a>
+            </div>
+
+            <!-- Opción 2: Web Corporativa -->
+            <div class="pricing-card featured group">
+                <div class="featured-badge">MÁS DEMANDADO</div>
+                <div class="card-header">
+                    <h3>Web Corporativa</h3>
+                    <p class="subtitle">Presencia premium completa</p>
+                </div>
+                <div class="price">
+                    <span class="currency">Desde</span>
+                    <span class="amount">1.850€</span>
+                </div>
+                <ul class="features">
+                    <li>Hasta 5 secciones personalizadas</li>
+                    <li>Gestor de contenidos (CMS)</li>
+                    <li>Animaciones micro-interactivas</li>
+                    <li>Arquitectura escalable</li>
+                    <li>Soporte 30 días post-lanzamiento</li>
+                </ul>
+                <a href="#contacto" class="btn-select featured-btn"
+                    >INICIAR PROYECTO</a
+                >
+            </div>
+
+            <!-- Opción 3: SEO & Mantenimiento -->
+            <div class="pricing-card group">
+                <div class="card-header">
+                    <h3>Crecimiento Escala</h3>
+                    <p class="subtitle">Estrategia mensual</p>
+                </div>
+                <div class="price">
+                    <span class="currency">Desde</span>
+                    <span class="amount">450€</span><span class="period"
+                        >/mes</span
+                    >
+                </div>
+                <ul class="features">
+                    <li>Auditoría SEO mensual</li>
+                    <li>Optimización continua de CWV</li>
+                    <li>Seguridad y Backups diarios</li>
+                    <li>Informes de rendimiento técnicos</li>
+                    <li>Consultoría estratégica</li>
+                </ul>
+                <a href="#contacto" class="btn-select">SABER MÁS</a>
+            </div>
+        </div>
+
+        <div class="custom-quote">
+            <p>
+                ¿Necesitas algo más específico? <a href="#contacto"
+                    >Escríbenos para un presupuesto a medida.</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .budgets {
+        padding: 10rem 0;
+        background-color: var(--color-cream);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .budgets-header {
+        text-align: center;
+        margin-bottom: 6rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header-content {
+        max-width: 700px;
+    }
+
+    .tag-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid rgba(26, 26, 26, 0.2);
+        border-radius: 100px;
+        color: var(--color-muted);
+    }
+
+    h2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 2rem;
+        color: var(--color-black);
+    }
+
+    h2 span {
+        font-weight: 500;
+        font-style: italic;
+    }
+
+    .line {
+        width: 80px;
+        height: 1px;
+        background: var(--color-black);
+        margin: 0 auto 2.5rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--color-muted);
+    }
+
+    /* Pricing Grid */
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        align-items: start;
+    }
+
+    .pricing-card {
+        background: #fff;
+        padding: 4rem 3rem;
+        border-radius: 30px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        transition:
+            transform 0.4s ease,
+            box-shadow 0.4s ease;
+        position: relative;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-card.featured {
+        background: var(--color-black);
+        color: #fff;
+        padding-top: 5rem;
+    }
+
+    .featured-badge {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        background: var(--color-cream);
+        color: var(--color-black);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        letter-spacing: 0.05em;
+    }
+
+    .card-header {
+        margin-bottom: 3rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .pricing-card.featured .card-header h3 {
+        color: #fff;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        color: var(--color-muted);
+    }
+
+    .pricing-card.featured .subtitle {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .price {
+        margin-bottom: 3.5rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+    }
+
+    .currency {
+        font-size: 1rem;
+        font-weight: 500;
+        opacity: 0.7;
+    }
+
+    .amount {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+    .period {
+        font-size: 1.1rem;
+        opacity: 0.7;
+    }
+
+    .features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 4rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .features li {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--color-muted);
+    }
+
+    .pricing-card.featured .features li {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .features li::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--color-black);
+        border-radius: 50%;
+        opacity: 0.3;
+    }
+
+    .pricing-card.featured .features li::before {
+        background: #fff;
+    }
+
+    .btn-select {
+        text-align: center;
+        padding: 1.25rem;
+        border: 1px solid var(--color-black);
+        border-radius: 100px;
+        color: var(--color-black);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
+        transition: all 0.3s ease;
+    }
+
+    .btn-select:hover {
+        background: var(--color-black);
+        color: #fff;
+    }
+
+    .featured-btn {
+        background: var(--color-cream);
+        color: var(--color-black);
+        border: none;
+    }
+
+    .featured-btn:hover {
+        background: #fff;
+        color: var(--color-black);
+        transform: scale(1.02);
+    }
+
+    .custom-quote {
+        text-align: center;
+        margin-top: 6rem;
+        font-size: 1.1rem;
+        color: var(--color-muted);
+    }
+
+    .custom-quote a {
+        color: var(--color-black);
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid var(--color-black);
+        padding-bottom: 2px;
+    }
+
+    @media (max-width: 1024px) {
+        .pricing-grid {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            padding: 3rem 2.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .budgets {
+            padding: 6rem 0;
+        }
+    }
+</style>
