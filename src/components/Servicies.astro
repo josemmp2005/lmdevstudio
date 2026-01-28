@@ -247,13 +247,24 @@
             const viewportWidth = window.innerWidth;
             const sectionHeight = section.offsetHeight;
 
-            const distanceScrolled = -sectionRect.top;
-            const maxScrollDist = sectionHeight - viewportHeight;
-
-            let progress = distanceScrolled / maxScrollDist;
+            // Since margin-top is -100vh, the section starts "early".
+            // We want to "wait" for that 100vh overlap to pass (fade transition)
+            // before we start moving the horizontal track.
+            const overlapBuffer = viewportHeight; 
+            
+            const rawDistScrolled = -sectionRect.top;
+            const effectiveDistScrolled = Math.max(0, rawDistScrolled - overlapBuffer);
+            
+            // Recalculate max scroll based on remaining height
+            const maxScrollDist = sectionHeight - viewportHeight - overlapBuffer;
+            
+            let progress = 0;
+            if (maxScrollDist > 0) {
+                 progress = effectiveDistScrolled / maxScrollDist;
+            }
             progress = Math.max(0, Math.min(1, progress));
 
-            // Usamos el offsetLeft de la última tarjeta para asegurar que se detenga exactamente ahí
+            // Horizontal Translation
             const lastCard = track.lastElementChild as HTMLElement;
             const maxDelta = lastCard
                 ? lastCard.offsetLeft
@@ -304,10 +315,12 @@
 
 <style>
     .services-pin-section {
-        height: 500vh; /* Duración extendida para tarjetas más grandes */
-        background-color: #0a0a0a; /* Color oscuro premium solicitado */
+        height: 500vh; 
+        background-color: #0a0a0a; 
         position: relative;
         color: #fff;
+        margin-top: -100vh; /* Overlap with Hero */
+        z-index: 1; /* Below Hero */
     }
 
     .sticky-wrapper {
@@ -318,17 +331,7 @@
         overflow: hidden;
         display: flex;
         align-items: center;
-        opacity: 0;
-        transform: translateY(50px);
-        transition:
-            opacity 1.2s cubic-bezier(0.2, 0, 0.2, 1),
-            transform 1.2s cubic-bezier(0.2, 0, 0.2, 1);
-        will-change: opacity, transform;
-    }
-
-    .sticky-wrapper.is-visible {
-        opacity: 1;
-        transform: translateY(0);
+        /* Removed opacity: 0 and transform for immediate visibility */
     }
 
     /* Floating Header - Anchor effect */
