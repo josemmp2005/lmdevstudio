@@ -9,7 +9,6 @@
             <div class="container">
                 <div class="services-header">
                     <div class="header-left">
-                        <h2>Nuestros <br /><span>Servicios</span></h2>
                         <div class="line"></div>
                     </div>
                 </div>
@@ -245,6 +244,7 @@
 
             const sectionRect = section.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
+            const viewportWidth = window.innerWidth;
             const sectionHeight = section.offsetHeight;
 
             const distanceScrolled = -sectionRect.top;
@@ -253,9 +253,11 @@
             let progress = distanceScrolled / maxScrollDist;
             progress = Math.max(0, Math.min(1, progress));
 
-            const trackWidth = track.scrollWidth;
-            const viewportWidth = window.innerWidth;
-            const maxDelta = trackWidth - viewportWidth;
+            // Usamos el offsetLeft de la última tarjeta para asegurar que se detenga exactamente ahí
+            const lastCard = track.lastElementChild as HTMLElement;
+            const maxDelta = lastCard
+                ? lastCard.offsetLeft
+                : track.scrollWidth - viewportWidth;
 
             if (maxDelta > 0) {
                 const translateX = progress * maxDelta;
@@ -278,6 +280,26 @@
         );
         updateScroll();
     }
+
+    // Fade-in Observer
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const stickyWrapper = document.getElementById("sticky-services");
+    if (stickyWrapper) {
+        observer.observe(stickyWrapper);
+    }
 </script>
 
 <style>
@@ -296,6 +318,17 @@
         overflow: hidden;
         display: flex;
         align-items: center;
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+            opacity 1.2s cubic-bezier(0.2, 0, 0.2, 1),
+            transform 1.2s cubic-bezier(0.2, 0, 0.2, 1);
+        will-change: opacity, transform;
+    }
+
+    .sticky-wrapper.is-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     /* Floating Header - Anchor effect */
@@ -329,12 +362,6 @@
         color: rgba(255, 255, 255, 0.4);
     }
 
-    .line {
-        width: 60px;
-        height: 2px;
-        background: #fff;
-    }
-
     /* Horizontal Track */
     .horizontal-track-wrapper {
         width: 100%;
@@ -356,7 +383,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 10vw;
         border-right: 1px solid rgba(255, 255, 255, 0.03);
     }
 
@@ -382,8 +408,7 @@
         font-size: 12rem;
         font-weight: 700;
         line-height: 1;
-        color: rgba(255, 255, 255, 0.02);
-        margin-bottom: -4rem;
+        color: rgb(139 139 139);
         margin-left: -1rem;
         font-family: serif; /* Elegante contraste */
     }
@@ -455,11 +480,6 @@
         line-height: 1.7;
         color: rgba(255, 255, 255, 0.4);
         padding-left: 2rem;
-    }
-
-    /* CTA Card Variant */
-    .cta-card {
-        background: radial-gradient(circle at center, #111 0%, #0a0a0a 100%);
     }
 
     .cta-banner {

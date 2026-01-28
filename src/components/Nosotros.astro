@@ -52,20 +52,6 @@
                     </div>
                 </div>
             </div>
-            <div class="about-visual">
-                <div class="visual-container">
-                    <div class="main-image">
-                        <!-- Aquí iría una imagen real, usamos un placeholder elegante -->
-                        <div class="placeholder-img">
-                            <div class="abstract-shape"></div>
-                        </div>
-                    </div>
-                    <div class="stats-card">
-                        <span class="stat-number">+100%</span>
-                        <span class="stat-label">Compromiso</span>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -73,7 +59,11 @@
 <style>
     .about {
         padding: 10rem 0;
-        background-color: var(--color-cream);
+        /* background: linear-gradient(to bottom, #0a0a0a, #333333); */
+        background-image: url("/image.jpeg");
+        background-size: contain;
+        color: #fff;
+        height: 100vh;
     }
 
     .container {
@@ -94,13 +84,13 @@
     }
 
     .tag {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 600;
         letter-spacing: 0.15em;
         padding: 0.6rem 1.5rem;
-        border: 1px solid rgba(26, 26, 26, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 100px;
-        color: var(--color-muted);
+        color: rgba(255, 255, 255, 0.6);
     }
 
     h2 {
@@ -108,7 +98,7 @@
         font-weight: 300;
         line-height: 1.1;
         margin-bottom: 2rem;
-        color: var(--color-black);
+        color: #fff;
     }
 
     h2 span {
@@ -119,14 +109,14 @@
     .line {
         width: 80px;
         height: 1px;
-        background: var(--color-black);
+        background: #fff;
         margin-bottom: 2.5rem;
     }
 
     .description {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         line-height: 1.7;
-        color: var(--color-muted);
+        color: rgba(255, 255, 255, 0.7);
         margin-bottom: 4rem;
         max-width: 600px;
     }
@@ -143,23 +133,23 @@
     }
 
     .value-num {
-        font-size: 0.9rem;
+        font-size: 2rem;
         font-weight: 600;
-        color: var(--color-black);
-        opacity: 0.3;
+        color: rgba(255, 255, 255, 0.3);
         margin-top: 0.3rem;
     }
 
     .value-text h3 {
-        font-size: 1.25rem;
+        font-size: 2.25rem;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        color: var(--color-black);
+        color: #fff;
     }
 
     .value-text p {
-        color: var(--color-muted);
+        color: rgba(255, 255, 255, 0.6);
         line-height: 1.6;
+        font-size: 1.2rem;
     }
 
     /* Visual Section */
@@ -174,7 +164,7 @@
 
     .placeholder-img {
         aspect-ratio: 4/5;
-        background: #e5e2db;
+        background: #2a2a2a;
         border-radius: 20px;
         overflow: hidden;
         position: relative;
@@ -188,7 +178,7 @@
         height: 80%;
         background: linear-gradient(
             135deg,
-            rgba(0, 0, 0, 0.05) 0%,
+            rgba(255, 255, 255, 0.05) 0%,
             transparent 100%
         );
         transform: rotate(-10deg);
@@ -198,8 +188,8 @@
         position: absolute;
         bottom: 0;
         left: -20%;
-        background: var(--color-black);
-        color: var(--color-cream);
+        background: #fff;
+        color: #000;
         padding: 2.5rem;
         border-radius: 15px;
         display: flex;
@@ -214,7 +204,7 @@
     }
 
     .stat-label {
-        font-size: 0.9rem;
+        font-size: 1rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         opacity: 0.7;

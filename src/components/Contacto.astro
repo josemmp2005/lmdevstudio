@@ -1,5 +1,5 @@
 ---
-import Mascota from "./Mascota.astro";
+
 ---
 
 <section id="contacto" class="contact">
@@ -11,9 +11,7 @@ import Mascota from "./Mascota.astro";
                 </div>
                 <h2>¿Tienes un <span>Proyecto</span> en Mente?</h2>
                 <div class="line"></div>
-                <div class="mascot-container">
-                    <Mascota width="120px" variant="peek" />
-                </div>
+
                 <p class="description">
                     Estamos listos para escucharte y convertir tus ideas en
                     realidades digitales excepcionales.
@@ -97,8 +95,9 @@ import Mascota from "./Mascota.astro";
 
 <style>
     .contact {
-        padding: 10rem 0;
-        background-color: var(--color-cream);
+        height: 100vh;
+        align-content: center;
+        background: linear-gradient(to bottom, #e5e2db, var(--color-cream));
     }
 
     .container {

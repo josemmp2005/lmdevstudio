@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import Mascota from "../components/Mascota.astro";
+import CustomCursor from "../components/CustomCursor.astro";
 ---
 
 <!doctype html>
@@ -20,9 +20,9 @@ import Mascota from "../components/Mascota.astro";
         />
     </head>
     <body class="relative min-h-screen">
+        <CustomCursor />
         <div class="background-overlay"></div>
         <slot />
-        <Mascota className="floating-mascot" width="80px" variant="floating" />
     </body>
 </html>
 
@@ -41,6 +41,14 @@ import Mascota from "../components/Mascota.astro";
         font-family: "Raleway", sans-serif !important;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        cursor: none;
+    }
+
+    /* Ocultar el cursor por defecto solo en desktop */
+    @media (pointer: fine) {
+        * {
+            cursor: none !important;
+        }
     }
 
     h1,

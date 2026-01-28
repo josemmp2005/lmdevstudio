@@ -1,53 +1,50 @@
 ---
 const projects = [
     {
-        title: "Aura Jewelry",
-        category: "E-COMMERCE PREMIUM",
-        description:
-            "Plataforma de lujo con enfoque en experiencia táctil digital.",
+        title: "E-commerce de Lujo",
+        category: "PREMIUM RETAIL",
+        description: "Plataforma de alta gama con experiencia inmersiva.",
         imageClass: "bg-dark",
     },
     {
-        title: "Nova Studio",
-        category: "BRANDING & WEB",
-        description: "Identidad minimalista para estudio de arquitectura.",
+        title: "Portfolio Creativo",
+        category: "DESIGN STUDIO",
+        description: "Exhibición minimalista para artistas digitales.",
         imageClass: "bg-cream",
     },
     {
-        title: "Flow Task",
+        title: "Plataforma Interactiva",
         category: "WEB APP",
-        description: "Gestor de tareas con interfaz líquida y minimalista.",
+        description: "Interfaz fluida con micro-interacciones avanzadas.",
         imageClass: "bg-gray",
     },
     {
-        title: "Zénit Legal",
-        category: "CORPORATE",
-        description:
-            "Redefiniendo el sector legal a través del diseño moderno.",
+        title: "E-commerce de Lujo",
+        category: "PREMIUM RETAIL",
+        description: "Redefiniendo el lujo en el entorno digital.",
         imageClass: "bg-gradient",
     },
     {
-        title: "Echo Audio",
-        category: "PRODUCT LANDING",
-        description:
-            "Presentación inmersiva para auriculares de alta fidelidad.",
+        title: "Plataforma Intectiva",
+        category: "TECH SOLUTIONS",
+        description: "Ecosistema digital para empresas de vanguardia.",
         imageClass: "bg-dark",
     },
     {
-        title: "Lumina Art",
-        category: "GALLERY",
-        description: "Espacio digital para exhibición de arte contemporáneo.",
+        title: "Portforma de Lujo",
+        category: "CORPORATE",
+        description: "Soluciones elegantes para marcas exclusivas.",
         imageClass: "bg-cream",
     },
 ];
 
-// Split projects into 3 columns
-const col1 = [...projects, ...projects]; // Duplicated for seamless loop
-const col2 = [...projects.reverse(), ...projects.reverse()]; // Reverse for variety
-const col3 = [...projects, ...projects]; // Original order again for 3rd col
+// Split projects into 3 columns for seamless loop
+const col1 = [...projects, ...projects];
+const col2 = [...projects.reverse(), ...projects.reverse()];
+const col3 = [...projects, ...projects];
 ---
 
-<section id="portfolio" class="portfolio">
+<section id="portafolio" class="portfolio">
     <div class="container">
         <div class="portfolio-header">
             <div class="header-left">
@@ -60,113 +57,164 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
             </p>
         </div>
 
-        <div class="scroll-container-wrapper">
-            <div class="scroll-gradient top"></div>
-            <div class="scroll-container">
-                <!-- Column 1: Up -->
-                <div class="scroll-column scroll-up">
-                    {
-                        col1.map((project, index) => (
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <div
-                                        class={`image-placeholder ${project.imageClass}`}
-                                    />
-                                    <div class="project-overlay">
-                                        <div class="project-info">
-                                            <span class="category">
-                                                {project.category}
-                                            </span>
-                                            <h3>{project.title}</h3>
-                                            <p>{project.description}</p>
+        <div class="gallery-reveal-layout">
+            <div class="scrolling-wall-wrapper">
+                <div class="scroll-gradient top"></div>
+                <div class="scroll-container">
+                    <!-- Column 1: Up -->
+                    <div class="scroll-column scroll-up">
+                        {
+                            col1.map((project) => (
+                                <div class="project-frame">
+                                    <div class="frame-inner">
+                                        <div class="project-image">
+                                            <div
+                                                class={`image-placeholder ${project.imageClass}`}
+                                            />
+                                            <div class="project-overlay">
+                                                <div class="project-info">
+                                                    <h3>{project.title}</h3>
+                                                </div>
+                                                <a
+                                                    href="#"
+                                                    class="view-project"
+                                                >
+                                                    VER PROYECTO
+                                                </a>
+                                            </div>
                                         </div>
-                                        <a href="#" class="view-project">
-                                            VER PROYECTO
-                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    }
-                </div>
+                            ))
+                        }
+                    </div>
 
-                <!-- Column 2: Down -->
-                <div class="scroll-column scroll-down">
-                    {
-                        col2.map((project, index) => (
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <div
-                                        class={`image-placeholder ${project.imageClass}`}
-                                    />
-                                    <div class="project-overlay">
-                                        <div class="project-info">
-                                            <span class="category">
-                                                {project.category}
-                                            </span>
-                                            <h3>{project.title}</h3>
-                                            <p>{project.description}</p>
+                    <!-- Column 2: Down -->
+                    <div class="scroll-column scroll-down">
+                        {
+                            col2.map((project) => (
+                                <div class="project-frame">
+                                    <div class="frame-inner">
+                                        <div class="project-image">
+                                            <div
+                                                class={`image-placeholder ${project.imageClass}`}
+                                            />
+                                            <div class="project-overlay">
+                                                <div class="project-info">
+                                                    <h3>{project.title}</h3>
+                                                </div>
+                                                <a
+                                                    href="#"
+                                                    class="view-project"
+                                                >
+                                                    VER PROYECTO
+                                                </a>
+                                            </div>
                                         </div>
-                                        <a href="#" class="view-project">
-                                            VER PROYECTO
-                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    }
-                </div>
+                            ))
+                        }
+                    </div>
 
-                <!-- Column 3: Up -->
-                <div class="scroll-column scroll-up">
-                    {
-                        col3.map((project, index) => (
-                            <div class="project-card">
-                                <div class="project-image">
-                                    <div
-                                        class={`image-placeholder ${project.imageClass}`}
-                                    />
-                                    <div class="project-overlay">
-                                        <div class="project-info">
-                                            <span class="category">
-                                                {project.category}
-                                            </span>
-                                            <h3>{project.title}</h3>
-                                            <p>{project.description}</p>
+                    <!-- Column 3: Up -->
+                    <div class="scroll-column scroll-up">
+                        {
+                            col3.map((project) => (
+                                <div class="project-frame">
+                                    <div class="frame-inner">
+                                        <div class="project-image">
+                                            <div
+                                                class={`image-placeholder ${project.imageClass}`}
+                                            />
+                                            <div class="project-overlay">
+                                                <div class="project-info">
+                                                    <h3>{project.title}</h3>
+                                                </div>
+                                                <a
+                                                    href="#"
+                                                    class="view-project"
+                                                >
+                                                    VER PROYECTO
+                                                </a>
+                                            </div>
                                         </div>
-                                        <a href="#" class="view-project">
-                                            VER PROYECTO
-                                        </a>
                                     </div>
                                 </div>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
+                    </div>
                 </div>
+                <div class="scroll-gradient bottom"></div>
             </div>
-            <div class="scroll-gradient bottom"></div>
+
+            <!-- Empty space to reveal the statue in the background -->
+            <div class="reveal-space"></div>
         </div>
     </div>
 </section>
 
+<script>
+    // Premium 3D Tilt Effect
+    const frames = document.querySelectorAll(
+        ".project-frame",
+    ) as NodeListOf<HTMLElement>;
+
+    frames.forEach((frame) => {
+        frame.addEventListener("mousemove", (e) => {
+            const rect = frame.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = (y - centerY) / 25;
+            const rotateY = (centerX - x) / 25;
+
+            const inner = frame.querySelector(".frame-inner") as HTMLElement;
+            if (inner) {
+                inner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            }
+        });
+
+        frame.addEventListener("mouseleave", () => {
+            const inner = frame.querySelector(".frame-inner") as HTMLElement;
+            if (inner) {
+                inner.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            }
+        });
+    });
+</script>
+
 <style>
     .portfolio {
-        padding: 10rem 0;
-        background-color: var(--color-cream);
-        overflow: hidden; /* Ensure no scrollbar from this section */
+        background-image: url("/museo.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        height: 120vh;
+        display: flex;
+        align-items: center;
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
     }
 
     .container {
-        max-width: 1440px; /* Wider container for 3 columns */
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0 4rem;
+        width: 100%;
     }
 
     .portfolio-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin-bottom: 5rem;
+        margin-bottom: 4rem;
+        position: relative;
+        z-index: 20;
     }
 
     .header-left h2 {
@@ -177,12 +225,13 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
     }
 
     .header-left h2 span {
-        font-weight: 500;
+        font-weight: 400;
         font-style: italic;
+        opacity: 0.7;
     }
 
     .line {
-        width: 100px;
+        width: 120px;
         height: 1px;
         background: var(--color-black);
     }
@@ -195,11 +244,25 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
         text-align: right;
     }
 
-    /* Scroll Container */
-    .scroll-container-wrapper {
+    /* Reveal Layout: Carousel on the left, Space on the right */
+    .gallery-reveal-layout {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .scrolling-wall-wrapper {
         position: relative;
-        height: 800px; /* Fixed height for the viewing window */
+        height: 800px;
         overflow: hidden;
+        mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black 15%,
+            black 85%,
+            transparent
+        );
     }
 
     .scroll-container {
@@ -207,21 +270,17 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
         height: 100%;
-        transform: rotate(0deg); /* Trigger hardware acceleration */
     }
 
     .scroll-column {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        padding-bottom: 2rem; /* Ensure seamless loop */
-        /* Animation will be applied here */
     }
 
     .scroll-up {
         animation: scrollUp 40s linear infinite;
     }
-
     .scroll-down {
         animation: scrollDown 40s linear infinite;
     }
@@ -253,32 +312,37 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
         z-index: 10;
         pointer-events: none;
     }
-
     .scroll-gradient.top {
         top: 0;
         background: linear-gradient(
             to bottom,
-            var(--color-cream) 0%,
-            transparent 100%
+            rgba(219, 219, 219, 0.9),
+            transparent
         );
     }
-
     .scroll-gradient.bottom {
         bottom: 0;
         background: linear-gradient(
             to top,
-            var(--color-cream) 0%,
-            transparent 100%
+            rgba(219, 219, 219, 0.9),
+            transparent
         );
     }
 
-    /* Cards */
-    .project-card {
+    /* Project Frames (The Gold Borders) */
+    .project-frame {
         position: relative;
-        border-radius: 20px;
+    }
+
+    .frame-inner {
+        position: relative;
+        background: #000;
+        border: 2px solid #b8a078;
+        border-radius: 12px;
         overflow: hidden;
         aspect-ratio: 4/5;
-        flex-shrink: 0; /* Prevent shrinking in flex container */
+        transition: transform 0.1s ease-out;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     }
 
     .project-image {
@@ -290,7 +354,9 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
     .image-placeholder {
         width: 100%;
         height: 100%;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.9);
     }
 
     .bg-dark {
@@ -309,93 +375,63 @@ const col3 = [...projects, ...projects]; // Original order again for 3rd col
     .project-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.4) 40%,
+            transparent 100%
+        );
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         padding: 2rem;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-
-    .project-card:hover .project-overlay {
-        opacity: 1;
-    }
-
-    .project-card:hover .image-placeholder {
-        transform: scale(1.05);
-    }
-
-    .category {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.7);
-        letter-spacing: 0.15em;
-        margin-bottom: 0.5rem;
-        display: block;
+        opacity: 0.9;
     }
 
     .project-info h3 {
-        font-size: 1.5rem;
-        color: #fff;
-        margin-bottom: 0.5rem;
+        font-size: 1.6rem;
+        color: var(--color-cream);
+        margin-bottom: 1rem;
         font-weight: 500;
-    }
-
-    .project-info p {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
+        line-height: 1.2;
     }
 
     .view-project {
-        color: #fff;
-        font-size: 0.8rem;
+        color: #b8a078;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        padding-bottom: 0.3rem;
+        border-bottom: 1px solid rgba(184, 160, 120, 0.3);
+        padding-bottom: 0.2rem;
         width: max-content;
-        transition: border-color 0.3s ease;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
     }
 
-    .view-project:hover {
-        border-color: #fff;
+    .project-frame:hover .view-project {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    @media (max-width: 1024px) {
-        .scroll-container {
-            grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 1200px) {
+        .gallery-reveal-layout {
+            grid-template-columns: 1fr;
         }
-        .scroll-column:nth-child(3) {
-            display: none; /* Hide 3rd column on tablet */
+        .reveal-space {
+            display: none;
         }
     }
 
     @media (max-width: 768px) {
-        .portfolio {
-            padding: 6rem 0;
-        }
-        .portfolio-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
-        }
-        .header-desc {
-            text-align: left;
-        }
         .scroll-container {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
         }
-        .scroll-column:nth-child(2) {
-            display: none; /* Hide 2nd column on mobile, keep only 1 */
+        .scroll-column:nth-child(3) {
+            display: none;
         }
-        .scroll-container-wrapper {
+        .scrolling-wall-wrapper {
             height: 600px;
         }
     }

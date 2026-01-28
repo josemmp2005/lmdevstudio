@@ -1,0 +1,100 @@
+---
+
+---
+
+<div id="custom-cursor" class="custom-cursor"></div>
+
+<script>
+    const cursor = document.getElementById("custom-cursor");
+
+    if (cursor) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        const animate = () => {
+            // Suavizado del movimiento
+            const easing = 0.15;
+            cursorX += (mouseX - cursorX) * easing;
+            cursorY += (mouseY - cursorY) * easing;
+
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+            requestAnimationFrame(animate);
+        };
+
+        animate();
+
+        // Efectos al pasar sobre elementos interactivos
+        const interactables =
+            "a, button, input, textarea, .project-card, .service-card";
+
+        document.addEventListener("mouseover", (e) => {
+            const target = e.target as HTMLElement;
+            if (target && target.closest(interactables)) {
+                cursor.classList.add("cursor-hover");
+            }
+        });
+
+        document.addEventListener("mouseout", (e) => {
+            const target = e.target as HTMLElement;
+            if (target && target.closest(interactables)) {
+                cursor.classList.remove("cursor-hover");
+            }
+        });
+
+        // Ocultar si sale de la ventana
+        document.addEventListener("mouseleave", () => {
+            cursor.style.opacity = "0";
+        });
+
+        document.addEventListener("mouseenter", () => {
+            cursor.style.opacity = "1";
+        });
+    }
+</script>
+
+<style>
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 30px;
+        height: 30px;
+        border: 1.5px solid #fff;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate3d(-50%, -50%, 0);
+        margin-left: -15px;
+        margin-top: -15px;
+        transition:
+            width 0.3s ease,
+            height 0.3s ease,
+            background-color 0.3s ease,
+            opacity 0.3s ease,
+            border-color 0.3s ease;
+        mix-blend-mode: difference; /* Esto hará que sea visible tanto en claro como en oscuro */
+    }
+
+    .cursor-hover {
+        width: 60px;
+        height: 60px;
+        margin-left: -30px;
+        margin-top: -30px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 1024px) {
+        .custom-cursor {
+            display: none;
+        }
+    }
+</style>
