@@ -6,31 +6,33 @@
     <div class="container">
         <div class="contact-grid">
             <div class="contact-info">
-                <div class="tag-wrapper">
+                <div class="tag-wrapper reveal-up">
                     <span class="tag">CONTACTO</span>
                 </div>
-                <h2>¿Tienes un <span>Proyecto</span> en Mente?</h2>
-                <div class="line"></div>
+                <h2 class="reveal-up delay-1">
+                    ¿Tienes un <span>Proyecto</span> en Mente?
+                </h2>
+                <div class="line reveal-up delay-2"></div>
 
-                <p class="description">
+                <p class="description reveal-up delay-3">
                     Estamos listos para escucharte y convertir tus ideas en
                     realidades digitales excepcionales.
                 </p>
 
                 <div class="contact-details">
-                    <div class="detail-item">
+                    <div class="detail-item reveal-up delay-4">
                         <span class="label">Email</span>
                         <a href="mailto:hola@lmdevstudio.com" class="value"
                             >hola@lmdevstudio.com</a
                         >
                     </div>
-                    <div class="detail-item">
+                    <div class="detail-item reveal-up delay-5">
                         <span class="label">Ubicación</span>
                         <span class="value"
                             >Madrid, España — Remoto en todo el mundo</span
                         >
                     </div>
-                    <div class="detail-item">
+                    <div class="detail-item reveal-up delay-5">
                         <span class="label">Social</span>
                         <div class="social-links">
                             <a href="#">Instagram</a>
@@ -41,8 +43,8 @@
                 </div>
             </div>
 
-            <div class="contact-form-container">
-                <form class="contact-form">
+            <div class="contact-form-container reveal-in delay-2">
+                <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Nombre</label>
                         <input
@@ -72,7 +74,10 @@
                             placeholder="Cuéntanos sobre tu proyecto..."
                             required></textarea>
                     </div>
-                    <button type="submit" class="btn-submit">
+                    <button
+                        type="submit"
+                        class="btn-apple btn-apple-fill btn-submit"
+                    >
                         ENVIAR MENSAJE
                         <svg
                             viewBox="0 0 24 24"
@@ -90,26 +95,107 @@
                 </form>
             </div>
         </div>
+
+        <!-- Integrated Footer -->
+        <div class="footer-bar reveal-up delay-6">
+            <div class="copyright">
+                &copy; {new Date().getFullYear()} lmdevstudio. Todos los derechos
+                reservados.
+            </div>
+            <div class="legal-links">
+                <a href="/aviso-legal">Aviso Legal</a>
+                <a href="/politica-privacidad">Política de Privacidad</a>
+                <a href="/politica-cookies">Política de Cookies</a>
+            </div>
+        </div>
     </div>
 </section>
+
+<script>
+    const form = document.getElementById("contactForm") as HTMLFormElement;
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const name = formData.get("name");
+            const email = formData.get("email");
+            const message = formData.get("message");
+
+            const subject = `Nuevo mensaje de ${name} desde la web`;
+            const body = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`;
+
+            const mailtoLink = `mailto:hola@lmdevstudio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            window.location.href = mailtoLink;
+        });
+    }
+    // Instant Reveal Logic for Contact
+    const handleInstantReveal = () => {
+        const contactSection = document.getElementById("contacto");
+        if (!contactSection) return;
+
+        // Force all reveal elements in contact section to be visible immediately
+        const reveals = contactSection.querySelectorAll(
+            ".reveal, .reveal-up, .reveal-in, .delay-1, .delay-2, .delay-3, .delay-4, .delay-5",
+        );
+
+        reveals.forEach((el) => {
+            el.classList.add("active");
+        });
+    };
+
+    // Check on initial load if hash is #contacto
+    if (window.location.hash === "#contacto") {
+        handleInstantReveal();
+    }
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", () => {
+        if (window.location.hash === "#contacto") {
+            handleInstantReveal();
+        }
+    });
+
+    // Listen for clicks on links to #contacto
+    document.querySelectorAll('a[href="#contacto"]').forEach((link) => {
+        link.addEventListener("click", () => {
+            handleInstantReveal();
+        });
+    });
+</script>
 
 <style>
     .contact {
         height: 100vh;
         align-content: center;
-        background: linear-gradient(to bottom, #e5e2db, var(--color-cream));
+        background-image: url("/oficina.png");
+        background-size: cover;
+        background-position: center;
+        position: relative; /* Ensure it sits on top */
+        z-index: 10;
+        box-shadow: 0 -50px 100px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .container {
         max-width: 1280px;
         margin: 0 auto;
         padding: 0 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
     }
 
     .contact-grid {
         display: grid;
         grid-template-columns: 1fr 1.2fr;
         gap: 8rem;
+        flex-grow: 1;
+        align-content: center;
     }
 
     .tag-wrapper {
@@ -117,13 +203,13 @@
     }
 
     .tag {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 600;
         letter-spacing: 0.15em;
         padding: 0.6rem 1.5rem;
-        border: 1px solid rgba(26, 26, 26, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 100px;
-        color: var(--color-muted);
+        color: rgba(255, 255, 255, 0.6);
     }
 
     h2 {
@@ -131,7 +217,7 @@
         font-weight: 300;
         line-height: 1.1;
         margin-bottom: 2rem;
-        color: var(--color-black);
+        color: #d3bc7c;
     }
 
     h2 span {
@@ -142,7 +228,7 @@
     .line {
         width: 80px;
         height: 1px;
-        background: var(--color-black);
+        background: #d3bc7c;
         margin-bottom: 2.5rem;
     }
 
@@ -155,7 +241,7 @@
     .description {
         font-size: 1.2rem;
         line-height: 1.7;
-        color: var(--color-muted);
+        color: #ffffff;
         margin-bottom: 4rem;
     }
 
@@ -174,20 +260,20 @@
     .detail-item .label {
         font-size: 0.75rem;
         font-weight: 600;
-        color: var(--color-muted);
+        color: #b8b8b8;
         letter-spacing: 0.1em;
         text-transform: uppercase;
     }
 
     .detail-item .value {
         font-size: 1.1rem;
-        color: var(--color-black);
+        color: #ffffff;
         text-decoration: none;
         transition: color 0.3s ease;
     }
 
     .detail-item a.value:hover {
-        color: var(--color-muted);
+        color: #d3bc7c;
     }
 
     .social-links {
@@ -197,14 +283,14 @@
 
     .social-links a {
         font-size: 1rem;
-        color: var(--color-black);
+        color: #ffffff;
         text-decoration: none;
         border-bottom: 1px solid transparent;
         transition: border-color 0.3s ease;
     }
 
     .social-links a:hover {
-        border-color: var(--color-black);
+        border-color: #d3bc7c;
     }
 
     /* Form Styles */
@@ -223,25 +309,25 @@
     .form-group label {
         font-size: 0.85rem;
         font-weight: 600;
-        color: var(--color-black);
+        color: #ffffff;
     }
 
     .form-group input,
     .form-group textarea {
         background: transparent;
         border: none;
-        border-bottom: 1px solid rgba(26, 26, 26, 0.2);
+        border-bottom: 1px solid #d3bc7c;
         padding: 1rem 0;
         font-family: inherit;
         font-size: 1.1rem;
-        color: var(--color-black);
+        color: #d3bc7c;
         transition: border-color 0.3s ease;
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
         outline: none;
-        border-color: var(--color-black);
+        border-color: #d3bc7c;
     }
 
     .btn-submit {
@@ -279,6 +365,42 @@
         transform: translateX(5px);
     }
 
+    .form-status {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        min-height: 1.5rem;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+    }
+
+    .footer-bar {
+        margin-top: auto; /* Push to bottom */
+        padding-top: 4rem;
+        padding-bottom: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .legal-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .legal-links a {
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .legal-links a:hover {
+        color: #d3bc7c;
+    }
+
     @media (max-width: 1024px) {
         .contact-grid {
             gap: 5rem;
@@ -287,14 +409,27 @@
 
     @media (max-width: 768px) {
         .contact {
-            padding: 6rem 0;
+            padding: 2rem 0; /* Reduced padding as flex handles spacing */
+            height: auto;
+            min-height: 100vh;
         }
         .contact-grid {
             grid-template-columns: 1fr;
             gap: 4rem;
+            margin-bottom: 4rem;
         }
         .description {
             margin-bottom: 3rem;
+        }
+        .footer-bar {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+            padding-top: 2rem;
+        }
+        .legal-links {
+            flex-direction: column;
+            gap: 1rem;
         }
     }
 </style>

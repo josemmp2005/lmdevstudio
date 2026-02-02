@@ -23,6 +23,41 @@ import CustomCursor from "../components/CustomCursor.astro";
         <CustomCursor />
         <div class="background-overlay"></div>
         <slot />
+
+        <script>
+            // Global Reveal on Scroll Logic
+            const revealCallback = (
+                entries: IntersectionObserverEntry[],
+                observer: IntersectionObserver,
+            ) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    } else {
+                        // Remove active class when out of view to re-trigger animation
+                        entry.target.classList.remove("active");
+                    }
+                });
+            };
+
+            const revealObserver = new IntersectionObserver(revealCallback, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px",
+            });
+
+            // Re-run on navigation (if using view transitions or similar)
+            const setupReveals = () => {
+                const revealElements = document.querySelectorAll(
+                    ".reveal, .reveal-up, .reveal-in",
+                );
+                revealElements.forEach((el) => revealObserver.observe(el));
+            };
+
+            setupReveals();
+
+            // Listen for Astro page loads
+            document.addEventListener("astro:after-swap", setupReveals);
+        </script>
     </body>
 </html>
 
@@ -58,6 +93,58 @@ import CustomCursor from "../components/CustomCursor.astro";
     h5,
     h6 {
         font-family: "Raleway", sans-serif !important;
+    }
+
+    /* Animation Utilities */
+    .reveal {
+        opacity: 0;
+        transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        will-change: opacity;
+    }
+
+    .reveal-up {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+            opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+            transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        will-change: opacity, transform;
+    }
+
+    .reveal-in {
+        opacity: 0;
+        transform: scale(0.96);
+        transition:
+            opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+            transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        will-change: opacity, transform;
+    }
+
+    .reveal.active {
+        opacity: 1;
+    }
+
+    .reveal-up.active,
+    .reveal-in.active {
+        opacity: 1;
+        transform: translate(0) scale(1);
+    }
+
+    /* Staggered Delay Utilities */
+    .delay-1 {
+        transition-delay: 0.1s;
+    }
+    .delay-2 {
+        transition-delay: 0.2s;
+    }
+    .delay-3 {
+        transition-delay: 0.3s;
+    }
+    .delay-4 {
+        transition-delay: 0.4s;
+    }
+    .delay-5 {
+        transition-delay: 0.5s;
     }
 
     .background-overlay {

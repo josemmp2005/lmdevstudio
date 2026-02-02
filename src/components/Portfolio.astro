@@ -62,7 +62,7 @@ const col3 = [...projects, ...projects];
                 <div class="scroll-gradient top"></div>
                 <div class="scroll-container">
                     <!-- Column 1: Up -->
-                    <div class="scroll-column scroll-up">
+                    <div class="scroll-column scroll-up delay-1">
                         {
                             col1.map((project) => (
                                 <div class="project-frame">
@@ -90,7 +90,7 @@ const col3 = [...projects, ...projects];
                     </div>
 
                     <!-- Column 2: Down -->
-                    <div class="scroll-column scroll-down">
+                    <div class="scroll-column scroll-down delay-2">
                         {
                             col2.map((project) => (
                                 <div class="project-frame">
@@ -118,7 +118,7 @@ const col3 = [...projects, ...projects];
                     </div>
 
                     <!-- Column 3: Up -->
-                    <div class="scroll-column scroll-up">
+                    <div class="scroll-column scroll-up delay-3">
                         {
                             col3.map((project) => (
                                 <div class="project-frame">
@@ -193,11 +193,13 @@ const col3 = [...projects, ...projects];
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        height: 120vh;
+        height: 100vh;
         display: flex;
         align-items: center;
         padding: 5rem 0;
-        position: relative;
+        position: sticky; /* Sticky for curtain effect */
+        top: 0;
+        z-index: 1;
         overflow: hidden;
     }
 

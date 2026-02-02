@@ -8,7 +8,7 @@
         <div class="fixed-title-container">
             <div class="container">
                 <div class="services-header">
-                    <div class="header-left">
+                    <div class="header-left reveal-up">
                         <div class="line"></div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                                     Desarrollo Web <br /><span>High-End</span>
                                 </h3>
                                 <div class="narrative">
-                                    <p class="lead">
+                                    <p class="lead reveal-up delay-1">
                                         No construimos simplemente sitios web;
                                         forjamos la infraestructura digital que
                                         sostendrá el crecimiento de tu marca.
@@ -210,12 +210,16 @@
                 <div class="service-card cta-card">
                     <div class="card-inner">
                         <div class="cta-banner">
-                            <h2>¿Listo para <br /><span>Empezar?</span></h2>
-                            <p>
+                            <h2 class="reveal-up">
+                                ¿Listo para <br /><span>Empezar?</span>
+                            </h2>
+                            <p class="reveal-up delay-1">
                                 Transformemos juntos tu presencia digital en un
                                 activo de alto impacto y resultados medibles.
                             </p>
-                            <a href="#contacto" class="btn-primary"
+                            <a
+                                href="#contacto"
+                                class="btn-apple btn-apple-fill btn-primary reveal-up delay-2"
                                 >Solicitar Consultoría Gratuita</a
                             >
                         </div>
@@ -250,17 +254,21 @@
             // Since margin-top is -100vh, the section starts "early".
             // We want to "wait" for that 100vh overlap to pass (fade transition)
             // before we start moving the horizontal track.
-            const overlapBuffer = viewportHeight; 
-            
+            const overlapBuffer = viewportHeight;
+
             const rawDistScrolled = -sectionRect.top;
-            const effectiveDistScrolled = Math.max(0, rawDistScrolled - overlapBuffer);
-            
+            const effectiveDistScrolled = Math.max(
+                0,
+                rawDistScrolled - overlapBuffer,
+            );
+
             // Recalculate max scroll based on remaining height
-            const maxScrollDist = sectionHeight - viewportHeight - overlapBuffer;
-            
+            const maxScrollDist =
+                sectionHeight - viewportHeight - overlapBuffer;
+
             let progress = 0;
             if (maxScrollDist > 0) {
-                 progress = effectiveDistScrolled / maxScrollDist;
+                progress = effectiveDistScrolled / maxScrollDist;
             }
             progress = Math.max(0, Math.min(1, progress));
 
@@ -315,8 +323,8 @@
 
 <style>
     .services-pin-section {
-        height: 500vh; 
-        background-color: #0a0a0a; 
+        height: 500vh;
+        background-color: #0a0a0a;
         position: relative;
         color: #fff;
         margin-top: -100vh; /* Overlap with Hero */
