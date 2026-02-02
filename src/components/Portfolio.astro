@@ -48,17 +48,22 @@ const col3 = [...projects, ...projects];
     <div class="container">
         <div class="portfolio-header">
             <div class="header-left">
-                <h2>Proyectos <span>Seleccionados</span></h2>
-                <div class="line"></div>
+                <div class="tag-wrapper reveal-up">
+                    <span class="tag">PORTAFOLIO</span>
+                </div>
+                <h2 class="reveal-up delay-1">
+                    Proyectos <span>Seleccionados</span>
+                </h2>
+                <div class="line reveal-up delay-2"></div>
             </div>
-            <p class="header-desc">
+            <p class="header-desc reveal-up delay-2">
                 Una muestra de nuestro compromiso con el diseño de vanguardia y
                 la excelencia técnica.
             </p>
         </div>
 
         <div class="gallery-reveal-layout">
-            <div class="scrolling-wall-wrapper">
+            <div class="scrolling-wall-wrapper reveal-in delay-3">
                 <div class="scroll-gradient top"></div>
                 <div class="scroll-container">
                     <!-- Column 1: Up -->
@@ -185,6 +190,40 @@ const col3 = [...projects, ...projects];
             }
         });
     });
+
+    // Instant Reveal Logic for Portfolio
+    const handleInstantReveal = () => {
+        const portfolioSection = document.getElementById("portafolio");
+        if (!portfolioSection) return;
+
+        // Force all reveal elements in portfolio section to be visible immediately
+        const reveals = portfolioSection.querySelectorAll(
+            ".reveal, .reveal-up, .reveal-in, .delay-1, .delay-2, .delay-3",
+        );
+
+        reveals.forEach((el) => {
+            el.classList.add("active");
+        });
+    };
+
+    // Check on initial load if hash is #portafolio
+    if (window.location.hash === "#portafolio") {
+        handleInstantReveal();
+    }
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", () => {
+        if (window.location.hash === "#portafolio") {
+            handleInstantReveal();
+        }
+    });
+
+    // Listen for clicks on links to #portafolio
+    document.querySelectorAll('a[href="#portafolio"]').forEach((link) => {
+        link.addEventListener("click", () => {
+            handleInstantReveal();
+        });
+    });
 </script>
 
 <style>
@@ -197,8 +236,7 @@ const col3 = [...projects, ...projects];
         display: flex;
         align-items: center;
         padding: 5rem 0;
-        position: sticky; /* Sticky for curtain effect */
-        top: 0;
+        position: relative;
         z-index: 1;
         overflow: hidden;
     }
@@ -217,6 +255,21 @@ const col3 = [...projects, ...projects];
         margin-bottom: 4rem;
         position: relative;
         z-index: 20;
+    }
+
+    .tag-wrapper {
+        margin-bottom: 1.5rem;
+    }
+
+    .tag {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        padding: 0.6rem 1.5rem;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 100px;
+        color: rgba(0, 0, 0, 0.6);
+        display: inline-block;
     }
 
     .header-left h2 {
@@ -240,7 +293,7 @@ const col3 = [...projects, ...projects];
 
     .header-desc {
         max-width: 400px;
-        color: var(--color-muted);
+        color: var(--color-black);
         line-height: 1.6;
         font-weight: 300;
         text-align: right;
@@ -417,6 +470,24 @@ const col3 = [...projects, ...projects];
         transform: translateY(0);
     }
 
+    @media (min-width: 1400px) {
+        .portfolio {
+            height: 110vh;
+        }
+        .container {
+            padding: 0 3rem;
+        }
+        .portfolio-header {
+            margin-bottom: 3rem;
+        }
+        .header-left h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+        }
+        .scrolling-wall-wrapper {
+            height: 700px;
+        }
+    }
+
     @media (max-width: 1200px) {
         .gallery-reveal-layout {
             grid-template-columns: 1fr;
@@ -424,17 +495,62 @@ const col3 = [...projects, ...projects];
         .reveal-space {
             display: none;
         }
-    }
-
-    @media (max-width: 768px) {
         .scroll-container {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr; /* 2 columns on tablet/small laptop */
+            gap: 1.5rem;
         }
         .scroll-column:nth-child(3) {
             display: none;
         }
+        .container {
+            padding: 0 2rem;
+        }
+        .portfolio-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+        .header-desc {
+            text-align: left;
+            max-width: 100%;
+        }
         .scrolling-wall-wrapper {
-            height: 600px;
+            height: 650px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .portfolio {
+            height: 120vh;
+        }
+        .tag-wrapper {
+            margin-top: 6rem;
+        }
+        .header-left {
+            padding-top: 20px;
+        }
+
+        .portfolio {
+            padding: 3rem 0;
+        }
+        .container {
+            padding: 0 1.5rem;
+        }
+        .portfolio-header {
+            margin-bottom: 2rem;
+        }
+        .header-left h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+        }
+        .scroll-container {
+            grid-template-columns: 1fr; /* 1 column on mobile */
+        }
+        .scroll-column:nth-child(2),
+        .scroll-column:nth-child(3) {
+            display: none; /* Hide 2nd and 3rd columns */
+        }
+        .scrolling-wall-wrapper {
+            height: 550px;
         }
     }
 </style>

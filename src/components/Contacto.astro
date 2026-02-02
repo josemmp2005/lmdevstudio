@@ -97,7 +97,7 @@
         </div>
 
         <!-- Integrated Footer -->
-        <div class="footer-bar reveal-up delay-6">
+        <div class="footer-bar">
             <div class="copyright">
                 &copy; {new Date().getFullYear()} lmdevstudio. Todos los derechos
                 reservados.
@@ -124,7 +124,7 @@
             const subject = `Nuevo mensaje de ${name} desde la web`;
             const body = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`;
 
-            const mailtoLink = `mailto:hola@lmdevstudio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            const mailtoLink = `lmdevstudio@outlook.es?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             window.location.href = mailtoLink;
         });
@@ -171,9 +171,7 @@
         background-image: url("/oficina.png");
         background-size: cover;
         background-position: center;
-        position: relative; /* Ensure it sits on top */
-        z-index: 10;
-        box-shadow: 0 -50px 100px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+        position: relative;
         display: flex;
         flex-direction: column;
         justify-content: center;
