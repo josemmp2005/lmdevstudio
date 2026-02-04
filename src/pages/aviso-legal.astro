@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
+import LegalHeader from "../components/LegalHeader.astro";
 ---
 
 <Layout>
-    <Header />
+    <LegalHeader currentPage="aviso-legal" />
     <main class="legal-page">
         <div class="container">
             <h1>Aviso Legal</h1>
@@ -49,8 +49,11 @@ import Header from "../components/Header.astro";
         padding-top: 15vh;
         padding-bottom: 5rem;
         min-height: 100vh;
-        background-color: var(--color-cream);
-        color: var(--color-black);
+        background-image: url("/legal.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
     }
 
     .container {
@@ -63,6 +66,7 @@ import Header from "../components/Header.astro";
         font-size: clamp(2.5rem, 5vw, 4rem);
         margin-bottom: 3rem;
         font-weight: 300;
+        color: white;
     }
 
     h2 {
@@ -70,19 +74,20 @@ import Header from "../components/Header.astro";
         margin-top: 2rem;
         margin-bottom: 1rem;
         font-weight: 600;
+        color: white;
     }
 
     p {
         line-height: 1.8;
         margin-bottom: 1rem;
         font-size: 1.1rem;
-        color: #4a4a4a;
+        color: rgba(255, 255, 255, 0.9);
     }
 
     .back-link {
         display: inline-block;
         margin-top: 4rem;
-        color: var(--color-black);
+        color: white;
         text-decoration: none;
         font-weight: 600;
         border-bottom: 1px solid transparent;
@@ -90,6 +95,15 @@ import Header from "../components/Header.astro";
     }
 
     .back-link:hover {
-        border-color: var(--color-black);
+        border-color: white;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            background-image: url("/legal-movil.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     }
 </style>

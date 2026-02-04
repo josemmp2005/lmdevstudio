@@ -1,0 +1,256 @@
+---
+interface Props {
+    currentPage: "aviso-legal" | "politica-privacidad" | "politica-cookies";
+}
+
+const { currentPage } = Astro.props;
+
+const legalPages = [
+    { id: "aviso-legal", title: "Aviso Legal", href: "/aviso-legal" },
+    {
+        id: "politica-privacidad",
+        title: "Política de Privacidad",
+        href: "/politica-privacidad",
+    },
+    {
+        id: "politica-cookies",
+        title: "Política de Cookies",
+        href: "/politica-cookies",
+    },
+];
+---
+
+<header class="legal-header" id="legal-header">
+    <div class="legal-header-container">
+        <a href="/" class="logo">
+            <img src="/logo.png" alt="Logo" class="logo-img" />
+        </a>
+        <nav class="legal-nav">
+            {
+                legalPages.map((page) => (
+                    <a
+                        href={page.href}
+                        class={`legal-nav-link ${currentPage === page.id ? "active" : ""}`}
+                    >
+                        {page.title}
+                    </a>
+                ))
+            }
+        </nav>
+
+        <!-- Mobile Toggle -->
+        <div class="mobile-toggle" id="legal-mobile-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Overlay -->
+<div class="mobile-menu-overlay" id="legal-mobile-menu">
+    {
+        legalPages.map((page) => (
+            <a
+                href={page.href}
+                class={`mobile-nav-link ${currentPage === page.id ? "active" : ""}`}
+            >
+                {page.title}
+            </a>
+        ))
+    }
+</div>
+
+<script>
+    const header = document.getElementById("legal-header");
+    const toggle = document.getElementById("legal-mobile-toggle");
+    const mobileMenu = document.getElementById("legal-mobile-menu");
+
+    if (toggle && header && mobileMenu) {
+        toggle.addEventListener("click", () => {
+            header.classList.toggle("menu-open");
+            mobileMenu.classList.toggle("active");
+            const isOpen = header.classList.contains("menu-open");
+            document.body.style.overflow = isOpen ? "hidden" : "";
+        });
+
+        const closeMenu = () => {
+            header.classList.remove("menu-open");
+            mobileMenu.classList.remove("active");
+            document.body.style.overflow = "";
+        };
+
+        // Close menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll(".mobile-nav-link");
+        mobileLinks.forEach((link) => {
+            link.addEventListener("click", closeMenu);
+        });
+    }
+</script>
+
+<style>
+    .logo-img {
+        width: auto;
+        height: 20px;
+        filter: brightness(0) invert(1);
+    }
+    .legal-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10002;
+        background-color: transparent;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.5rem 0;
+        transition: all 0.3s ease;
+    }
+
+    .legal-header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+        z-index: 10003;
+    }
+
+    .logo:hover {
+        opacity: 0.7;
+    }
+
+    .legal-nav {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .legal-nav-link {
+        padding: 0.5rem 1rem;
+        color: white;
+        text-decoration: none;
+        font-size: 0.95rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        border: 1px solid transparent;
+    }
+
+    .legal-nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .legal-nav-link.active {
+        background-color: white;
+        color: var(--color-black);
+        border-color: white;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        cursor: pointer;
+        z-index: 10003;
+        padding: 0.5rem;
+    }
+
+    .bar {
+        width: 30px;
+        height: 2px;
+        background-color: white;
+        transition: all 0.3s ease;
+    }
+
+    /* Toggled State (X shape) */
+    .legal-header.menu-open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .legal-header.menu-open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .legal-header.menu-open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Overlay */
+    .mobile-menu-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 10001;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile-nav-link {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: white;
+        text-decoration: none;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+
+    .mobile-nav-link.active {
+        color: #c5a363;
+        font-weight: 600;
+    }
+
+    .mobile-menu-overlay.active .mobile-nav-link {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    @media (max-width: 1024px) {
+        .legal-nav {
+            display: none;
+        }
+
+        .mobile-toggle {
+            display: flex;
+        }
+
+        .legal-header-container {
+            padding: 0 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .logo-img {
+            height: 18px;
+        }
+
+        .legal-header {
+            padding: 1rem 0;
+        }
+    }
+</style>
