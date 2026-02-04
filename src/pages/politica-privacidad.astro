@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LegalHeader from "../components/LegalHeader.astro";
+---
+
+<Layout>
+    <LegalHeader currentPage="politica-privacidad" />
+    <main class="legal-page">
+        <div class="container">
+            <h1>Política de Privacidad</h1>
+            <div class="content">
+                <p>
+                    En LM Dev Studio nos tomamos muy en serio su privacidad.
+                    Esta Política de Privacidad describe cómo recopilamos,
+                    usamos y protegemos su información personal.
+                </p>
+
+                <h2>1. Información que Recopilamos</h2>
+                <p>
+                    Podemos recopilar información personal que usted nos
+                    proporciona voluntariamente, como su nombre y dirección de
+                    correo electrónico, al utilizar nuestro formulario de
+                    contacto.
+                </p>
+
+                <h2>2. Uso de la Información</h2>
+                <p>
+                    Utilizamos la información recopilada únicamente para
+                    responder a sus consultas y proporcionarle servicios
+                    relacionados con el desarrollo web.
+                </p>
+
+                <h2>3. Protección de Datos</h2>
+                <p>
+                    Implementamos medidas de seguridad para proteger sus datos
+                    personales contra el acceso no autorizado, la alteración,
+                    divulgación o destrucción.
+                </p>
+            </div>
+            <a href="/#contacto" class="back-link">← Volver al inicio</a>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .legal-page {
+        padding-top: 15vh;
+        padding-bottom: 5rem;
+        min-height: 100vh;
+        background-image: url("/legal.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 3rem;
+        font-weight: 300;
+        color: white;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    p {
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 4rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover {
+        border-color: white;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            background-image: url("/legal-movil.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+</style>

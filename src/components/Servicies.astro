@@ -8,7 +8,7 @@
         <div class="fixed-title-container">
             <div class="container">
                 <div class="services-header">
-                    <div class="header-left">
+                    <div class="header-left reveal-up">
                         <div class="line"></div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                                     Desarrollo Web <br /><span>High-End</span>
                                 </h3>
                                 <div class="narrative">
-                                    <p class="lead">
+                                    <p class="lead reveal-up delay-1">
                                         No construimos simplemente sitios web;
                                         forjamos la infraestructura digital que
                                         sostendrá el crecimiento de tu marca.
@@ -210,12 +210,16 @@
                 <div class="service-card cta-card">
                     <div class="card-inner">
                         <div class="cta-banner">
-                            <h2>¿Listo para <br /><span>Empezar?</span></h2>
-                            <p>
+                            <h2 class="reveal-up">
+                                ¿Listo para <br /><span>Empezar?</span>
+                            </h2>
+                            <p class="reveal-up delay-1">
                                 Transformemos juntos tu presencia digital en un
                                 activo de alto impacto y resultados medibles.
                             </p>
-                            <a href="#contacto" class="btn-primary"
+                            <a
+                                href="#contacto"
+                                class="btn-apple btn-apple-fill btn-primary reveal-up delay-2"
                                 >Solicitar Consultoría Gratuita</a
                             >
                         </div>
@@ -236,11 +240,7 @@
         let isTicking = false;
 
         function updateScroll() {
-            if (window.innerWidth <= 768) {
-                track.style.transform = "none";
-                isTicking = false;
-                return;
-            }
+            // Mobile check removed to enable horizontal scroll everywhere
 
             const sectionRect = section.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
@@ -250,17 +250,21 @@
             // Since margin-top is -100vh, the section starts "early".
             // We want to "wait" for that 100vh overlap to pass (fade transition)
             // before we start moving the horizontal track.
-            const overlapBuffer = viewportHeight; 
-            
+            const overlapBuffer = viewportHeight;
+
             const rawDistScrolled = -sectionRect.top;
-            const effectiveDistScrolled = Math.max(0, rawDistScrolled - overlapBuffer);
-            
+            const effectiveDistScrolled = Math.max(
+                0,
+                rawDistScrolled - overlapBuffer,
+            );
+
             // Recalculate max scroll based on remaining height
-            const maxScrollDist = sectionHeight - viewportHeight - overlapBuffer;
-            
+            const maxScrollDist =
+                sectionHeight - viewportHeight - overlapBuffer;
+
             let progress = 0;
             if (maxScrollDist > 0) {
-                 progress = effectiveDistScrolled / maxScrollDist;
+                progress = effectiveDistScrolled / maxScrollDist;
             }
             progress = Math.max(0, Math.min(1, progress));
 
@@ -315,8 +319,8 @@
 
 <style>
     .services-pin-section {
-        height: 500vh; 
-        background-color: #0a0a0a; 
+        height: 500vh;
+        background-color: #0a0a0a;
         position: relative;
         color: #fff;
         margin-top: -100vh; /* Overlap with Hero */
@@ -550,50 +554,67 @@
     }
 
     @media (max-width: 768px) {
-        .services-pin-section {
-            height: auto;
-        }
-        .sticky-wrapper {
-            height: auto;
-            position: relative;
-            display: block;
-            overflow: visible;
+        .btn-primary {
+            padding: 1rem 2rem;
+            font-size: 1rem;
         }
         .fixed-title-container {
-            position: relative;
-            top: 0;
             padding: 6rem 1.5rem 0;
         }
-        .horizontal-track {
-            flex-direction: column;
-            width: 100%;
-        }
+
         .service-card {
             width: 100vw;
-            height: auto;
-            min-height: 100vh;
-            padding: 6rem 1.5rem;
+            height: 100vh;
+            padding: 2rem 1.5rem;
         }
+
         .card-inner {
-            margin-top: 2rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
         }
+
         .card-content {
             grid-template-columns: 1fr;
-            gap: 4rem;
+            gap: 2rem;
+            text-align: left;
         }
+
+        .content-right {
+            display: none; /* Hide details on mobile to fit screen/card */
+        }
+
         .service-num {
-            font-size: 8rem;
-            margin-bottom: -3rem;
+            font-size: 6rem;
+            margin-bottom: -1rem;
         }
-        .cta-banner h2 {
-            font-size: 4rem;
+
+        .content-left h3 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
-        .cta-banner p {
-            font-size: 1.3rem;
+
+        .lead {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
-        .btn-primary {
-            padding: 1.5rem 3rem;
+
+        .body-text {
             font-size: 1rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .cta-banner h2 {
+            font-size: 3.5rem;
+        }
+
+        .cta-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
         }
     }
 </style>

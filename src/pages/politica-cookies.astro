@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LegalHeader from "../components/LegalHeader.astro";
+---
+
+<Layout>
+    <LegalHeader currentPage="politica-cookies" />
+    <main class="legal-page">
+        <div class="container">
+            <h1>Política de Cookies</h1>
+            <div class="content">
+                <p>
+                    Este sitio web utiliza cookies para mejorar la experiencia
+                    del usuario. A continuación, explicamos qué son las cookies
+                    y cómo las utilizamos.
+                </p>
+
+                <h2>1. ¿Qué son las Cookies?</h2>
+                <p>
+                    Las cookies son pequeños archivos de texto que se almacenan
+                    en su dispositivo cuando visita un sitio web. Se utilizan
+                    ampliamente para hacer que los sitios web funcionen de
+                    manera más eficiente.
+                </p>
+
+                <h2>2. Tipos de Cookies que Utilizamos</h2>
+                <p>
+                    Utilizamos cookies técnicas necesarias para el
+                    funcionamiento del sitio y cookies analíticas para entender
+                    cómo los visitantes interactúan con nuestra web.
+                </p>
+
+                <h2>3. Gestión de Cookies</h2>
+                <p>
+                    Puede configurar su navegador para rechazar todas o algunas
+                    cookies, o para que le avise cuando los sitios web
+                    establezcan o accedan a cookies.
+                </p>
+            </div>
+            <a href="/#contacto" class="back-link">← Volver al inicio</a>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .legal-page {
+        padding-top: 15vh;
+        padding-bottom: 5rem;
+        min-height: 100vh;
+        background-image: url("/legal.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 3rem;
+        font-weight: 300;
+        color: white;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    p {
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 4rem;
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+
+    .back-link:hover {
+        border-color: white;
+    }
+
+    @media (max-width: 768px) {
+        .legal-page {
+            background-image: url("/legal-movil.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+</style>

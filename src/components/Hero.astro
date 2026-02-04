@@ -1,13 +1,16 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from "node:fs";
+import path from "node:path";
 
 // Get sorted list of frame files from public/images/hero
-const heroImagesDir = path.join(process.cwd(), 'public', 'images', 'hero');
-let frameFiles = [];
+const heroImagesDir = path.join(process.cwd(), "public", "images", "hero");
+let frameFiles: string[] = [];
 try {
-    frameFiles = fs.readdirSync(heroImagesDir)
-        .filter(file => file.endsWith('.png') || file.endsWith('.jpg'))
+    frameFiles = fs
+        .readdirSync(heroImagesDir)
+        .filter(
+            (file: string) => file.endsWith(".png") || file.endsWith(".jpg"),
+        )
         .sort();
 } catch (e) {
     console.error("Could not read hero images directory:", e);
@@ -20,10 +23,10 @@ const framesJson = JSON.stringify(frameFiles);
 <section class="hero-spacer">
     <div class="sticky-container">
         <canvas id="hero-canvas"></canvas>
-        
+
         <!-- Contenedor del texto que se desvanecerá -->
         <div class="hero-content-wrapper" id="hero-content-wrapper">
-             <div class="hero-container">
+            <div class="hero-container">
                 <div class="hero-content">
                     <div class="tag-wrapper">
                         <span class="tag">PREMIUM WEB DEVELOPMENTS</span>
@@ -36,14 +39,22 @@ const framesJson = JSON.stringify(frameFiles);
                     </h1>
 
                     <p class="description">
-                        Diseño y desarrollo web con enfoque en rendimiento, SEO y
-                        conversión para marcas que se toman en serio su presencia
-                        digital.
+                        Diseño y desarrollo web con enfoque en rendimiento, SEO
+                        y conversión para marcas que se toman en serio su
+                        presencia digital.
                     </p>
 
                     <div class="hero-actions">
-                        <a href="#contacto" class="btn-primary">Hablemos</a>
-                        <a href="#proyectos" class="btn-secondary">Nuestros Proyectos</a>
+                        <a
+                            href="#contacto"
+                            class="btn-apple btn-apple-fill btn-primary"
+                            >Hablemos</a
+                        >
+                        <a
+                            href="#proyectos"
+                            class="btn-apple btn-apple-tinted btn-secondary"
+                            >Nuestros Proyectos</a
+                        >
                     </div>
                 </div>
             </div>
@@ -59,10 +70,10 @@ const framesJson = JSON.stringify(frameFiles);
 
     if (canvas && container) {
         const context = canvas.getContext("2d");
-        const heroSpacer = document.querySelector('.hero-spacer');
-        const heroContent = document.getElementById('hero-content-wrapper');
-        const stickyContainer = document.querySelector('.sticky-container');
-        
+        const heroSpacer = document.querySelector(".hero-spacer");
+        const heroContent = document.getElementById("hero-content-wrapper");
+        const stickyContainer = document.querySelector(".sticky-container");
+
         // Preload images
         const images = [];
         let imagesLoaded = 0;
@@ -84,14 +95,22 @@ const framesJson = JSON.stringify(frameFiles);
 
         // Drawing Logic
         const updateImage = (index) => {
-            if (index >= 0 && index < images.length && images[index] && images[index].complete) {
+            if (
+                index >= 0 &&
+                index < images.length &&
+                images[index] &&
+                images[index].complete
+            ) {
                 const img = images[index];
-                
+
                 // Canvas dimensions
                 const canvasFullWidth = window.innerWidth;
                 const canvasFullHeight = window.innerHeight;
-                
-                if (canvas.width !== canvasFullWidth || canvas.height !== canvasFullHeight) {
+
+                if (
+                    canvas.width !== canvasFullWidth ||
+                    canvas.height !== canvasFullHeight
+                ) {
                     canvas.width = canvasFullWidth;
                     canvas.height = canvasFullHeight;
                 }
@@ -99,7 +118,7 @@ const framesJson = JSON.stringify(frameFiles);
                 // "cover" fit logic
                 const canvasRatio = canvas.width / canvas.height;
                 const imgRatio = img.width / img.height;
-                
+
                 let drawWidth, drawHeight, offsetX, offsetY;
 
                 if (imgRatio > canvasRatio) {
@@ -113,7 +132,7 @@ const framesJson = JSON.stringify(frameFiles);
                     offsetX = 0;
                     offsetY = (canvas.height - drawHeight) / 2;
                 }
-                
+
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 context.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
             }
@@ -125,38 +144,39 @@ const framesJson = JSON.stringify(frameFiles);
             const rect = heroSpacer.getBoundingClientRect();
             // Scroll distance
             const scrollDistance = rect.height - window.innerHeight;
-            const scrolled = -rect.top; 
-            
+            const scrolled = -rect.top;
+
             const progress = scrolled / scrollDistance;
             return Math.max(0, Math.min(1, progress));
         };
 
         const onScroll = () => {
             const progress = getScrollProgress();
-            
+
             // 1. Frame Animation (Stops at 85%)
             const frameProgressLimit = 0.85;
             const frameRatio = Math.min(1, progress / frameProgressLimit);
             const frameIndex = Math.min(
                 frames.length - 1,
-                Math.floor(frameRatio * frames.length)
+                Math.floor(frameRatio * frames.length),
             );
             requestAnimationFrame(() => updateImage(frameIndex));
 
             // 2. Text Opacity (First 15%)
             if (heroContent) {
-                const fadeProgress = progress * 6; 
+                const fadeProgress = progress * 6;
                 const textOpacity = 1 - Math.min(1, fadeProgress);
                 heroContent.style.opacity = textOpacity;
-                heroContent.style.pointerEvents = textOpacity <= 0.05 ? 'none' : 'all';
+                heroContent.style.pointerEvents =
+                    textOpacity <= 0.05 ? "none" : "all";
             }
 
             // 3. Reveal Services (Fade Out Hero) - Last 15%
             if (stickyContainer) {
-                const fadeStart = 0.85; 
+                const fadeStart = 0.85;
                 if (progress > fadeStart) {
                     // Map 0.85 -> 1.0 to Opacity 1 -> 0
-                    const remaining = 1 - progress; 
+                    const remaining = 1 - progress;
                     const range = 1 - fadeStart;
                     const opacity = Math.max(0, remaining / range);
                     stickyContainer.style.opacity = opacity;
@@ -167,19 +187,18 @@ const framesJson = JSON.stringify(frameFiles);
         };
 
         window.addEventListener("resize", () => {
-            onScroll(); 
+            onScroll();
         });
-        window.addEventListener("scroll", onScroll);
-        
+        window.addEventListener("scroll", onScroll, { passive: true });
+
         preloadImages();
         onScroll();
     }
-
 </script>
 
 <style>
     .hero-spacer {
-        height: 500vh; 
+        height: 500vh;
         position: relative;
         z-index: 10; /* Higher than Services */
     }
@@ -226,7 +245,7 @@ const framesJson = JSON.stringify(frameFiles);
     /* Keep existing hero styles */
     .tag-wrapper {
         margin-bottom: 3rem;
-        animation: reveal 0.8s ease-out both; 
+        animation: reveal 0.8s ease-out both;
         animation-delay: 0.2s;
     }
 
@@ -318,11 +337,17 @@ const framesJson = JSON.stringify(frameFiles);
     }
 
     @media (max-width: 768px) {
+        .tag-wrapper {
+            margin-top: 6rem;
+        }
         .hero-spacer {
             height: 400vh;
         }
         h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
+        }
+        .description {
+            font-size: 1.1rem;
         }
         .hero-actions {
             flex-direction: column;
