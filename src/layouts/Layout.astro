@@ -8,7 +8,7 @@ import CustomCursor from "../components/CustomCursor.astro";
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/icono.png" />
+        <link rel="icon" type="image/svg+xml" href="/icono.webp" />
         <meta name="generator" content={Astro.generator} />
         <title>lmdevstudio | Desarrollo Web Minimalista & Elegante</title>
         <!-- Preload font for better performance -->
@@ -19,7 +19,19 @@ import CustomCursor from "../components/CustomCursor.astro";
             rel="stylesheet"
         />
     </head>
-    <body class="relative min-h-screen">
+    <body class="relative min-h-screen is-loading">
+        <!-- Preloader -->
+        <div id="main-loader" class="loader-overlay">
+            <div class="loader-content">
+                <img
+                    src="/icono.webp"
+                    alt="lmdevstudio Logo"
+                    class="loader-logo"
+                />
+                <div class="loader-line"></div>
+            </div>
+        </div>
+
         <CustomCursor />
         <div class="background-overlay"></div>
         <slot />
@@ -45,6 +57,24 @@ import CustomCursor from "../components/CustomCursor.astro";
                 rootMargin: "0px 0px -50px 0px",
             });
 
+            // Loader Logic
+            window.addEventListener("load", () => {
+                const loader = document.getElementById("main-loader");
+                const body = document.body;
+
+                if (loader) {
+                    setTimeout(() => {
+                        loader.classList.add("fade-out");
+                        // Desbloquear scroll y quitar clase de carga
+                        body.classList.remove("is-loading");
+
+                        setTimeout(() => {
+                            loader.style.display = "none";
+                        }, 800);
+                    }, 1200); // Un poco más de tiempo para apreciar el logo
+                }
+            });
+
             // Re-run on navigation (if using view transitions or similar)
             const setupReveals = () => {
                 const revealElements = document.querySelectorAll(
@@ -56,7 +86,12 @@ import CustomCursor from "../components/CustomCursor.astro";
             setupReveals();
 
             // Listen for Astro page loads
-            document.addEventListener("astro:after-swap", setupReveals);
+            document.addEventListener("astro:after-swap", () => {
+                setupReveals();
+                // Ocultar loader en transiciones
+                const loader = document.getElementById("main-loader");
+                if (loader) loader.style.display = "none";
+            });
         </script>
     </body>
 </html>
@@ -176,6 +211,87 @@ import CustomCursor from "../components/CustomCursor.astro";
 
     .floating-mascot:hover {
         opacity: 1;
+    }
+
+    body.is-loading {
+        overflow: hidden !important;
+    }
+
+    body.is-loading #main-header {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Loader Styles */
+    .loader-overlay {
+        position: fixed;
+        inset: 0;
+        background-color: var(--color-cream);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999; /* Por encima de todo, incluyendo el header */
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: opacity;
+    }
+
+    .loader-overlay.fade-out {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .loader-logo {
+        width: 80px;
+        height: auto;
+        /* Máscara negra: convertimos el logo a negro puro */
+        filter: brightness(0);
+        animation: logo-pulse 2s ease-in-out infinite;
+    }
+
+    .loader-line {
+        width: 100px;
+        height: 2px;
+        background: rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+    }
+
+    .loader-line::after {
+        content: "";
+        position: absolute;
+        width: 40%;
+        height: 100%;
+        background: var(--color-black);
+        animation: line-slide 1.5s ease-in-out infinite;
+    }
+
+    @keyframes logo-pulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes line-slide {
+        0% {
+            transform: translateX(-150%);
+        }
+        100% {
+            transform: translateX(250%);
+        }
     }
 
     @media (max-width: 768px) {

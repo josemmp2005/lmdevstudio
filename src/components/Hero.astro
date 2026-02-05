@@ -8,9 +8,7 @@ let frameFiles: string[] = [];
 try {
     frameFiles = fs
         .readdirSync(heroImagesDir)
-        .filter(
-            (file: string) => file.endsWith(".png") || file.endsWith(".jpg"),
-        )
+        .filter((file: string) => file.endsWith(".webp"))
         .sort();
 } catch (e) {
     console.error("Could not read hero images directory:", e);
@@ -363,7 +361,7 @@ const framesJson = JSON.stringify(frameFiles);
             height: 100vh;
         }
         .sticky-container {
-            background-image: url("/public/fondo-movil.png");
+            background-image: url("/fondo-movil.webp");
             background-size: cover;
             background-position: center;
         }
@@ -387,3 +385,4 @@ const framesJson = JSON.stringify(frameFiles);
         }
     }
 </style>
+
