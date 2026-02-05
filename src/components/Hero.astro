@@ -138,8 +138,12 @@ const framesJson = JSON.stringify(frameFiles);
             }
         };
 
+        // Check if mobile
+        const isMobile = () => window.innerWidth <= 768;
+
         // Scroll Logic
         const getScrollProgress = () => {
+            if (isMobile()) return 0;
             if (!heroSpacer) return 0;
             const rect = heroSpacer.getBoundingClientRect();
             // Scroll distance
@@ -151,6 +155,18 @@ const framesJson = JSON.stringify(frameFiles);
         };
 
         const onScroll = () => {
+            if (isMobile()) {
+                // Reset states for mobile
+                if (heroContent) {
+                    heroContent.style.opacity = 1;
+                    heroContent.style.pointerEvents = "all";
+                }
+                if (stickyContainer) {
+                    stickyContainer.style.opacity = 1;
+                }
+                return;
+            }
+
             const progress = getScrollProgress();
 
             // 1. Frame Animation (Stops at 85%)
@@ -191,7 +207,10 @@ const framesJson = JSON.stringify(frameFiles);
         });
         window.addEventListener("scroll", onScroll, { passive: true });
 
-        preloadImages();
+        // Only preload and start if not mobile
+        if (!isMobile()) {
+            preloadImages();
+        }
         onScroll();
     }
 </script>
@@ -341,7 +360,15 @@ const framesJson = JSON.stringify(frameFiles);
             margin-top: 6rem;
         }
         .hero-spacer {
-            height: 400vh;
+            height: 100vh;
+        }
+        .sticky-container {
+            background-image: url("/public/fondo-movil.png");
+            background-size: cover;
+            background-position: center;
+        }
+        canvas {
+            display: none;
         }
         h1 {
             font-size: 2.6rem;
